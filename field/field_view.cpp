@@ -3,7 +3,7 @@
 #include <QGridLayout>
 
 
-inline static const char* normal_cell_color = "background-color: rgba(46, 204, 113, 0.4);";
+inline static const char* closed_cell_color = "background-color: rgba(46, 204, 113, 0.4);";
 inline static const char* marked_cell_color = "background-color: rgba(46, 204, 113, 0.8);";
 
 inline static const char* mine_cell_color = "background-color: rgba(185, 29, 113, 0.4);";
@@ -15,7 +15,7 @@ CellView::CellView(int id, CellData* data, QWidget* parent)
     : QPushButton(parent), id(id), data(data)
 {
     setFixedSize(20, 20);
-    setStyleSheet(normal_cell_color);
+    setStyleSheet(closed_cell_color);
 }
 
 CellView::~CellView()
@@ -61,7 +61,9 @@ void CellView::Open()
 
 void CellView::Mark()
 {
-    if (!is_opened) setStyleSheet(marked_cell_color);
+    if (is_opened) return;
+    (is_marked) ? setStyleSheet(closed_cell_color) : setStyleSheet(marked_cell_color);
+    is_marked = !is_marked;
 }
 
 
@@ -100,7 +102,10 @@ void FieldView::MakeCell(int id)
 
 void FieldView::OpenVoidArea(int id)
 {
-    //QList<int> neighbours = GetNeighbours(id);
+    QList<int> neighbours = data->GetNeighbours(id);
+    for (const auto& n : neighbours) {
+        cells[n]->Open();
+    }
 }
 
 void FieldView::Boom(int id)

@@ -34,10 +34,10 @@ public:
     ~FieldData() = default;
 
     CellData& GetCellData(int id);
+    QList<int> GetNeighbours(int id);
 
 private:
     QSet<int> GetMinesPlaces();
-    QList<int> GetNeighbours(int id);
     void SetMinesAndCounters(QSet<int>& mines_cells);
 
 private:

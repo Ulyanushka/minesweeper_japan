@@ -30,6 +30,7 @@ private:
 private:
     int id;
     bool is_opened = false;
+    bool is_marked = false;
     CellData* data;
 };
 
