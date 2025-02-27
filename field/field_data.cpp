@@ -1,6 +1,7 @@
 #include "field_data.h"
 
 #include <QRandomGenerator>
+#include <QDebug>
 
 
 QString CellData::GetText() const
@@ -20,7 +21,7 @@ CellType CellData::GetType() const
 
 void CellData::IncreaseCounter()
 {
-    if (near_mines_counter == 0 || type != CellType::Mine) type = CellType::Counter;
+    if (near_mines_counter == 0 && type != CellType::Mine) type = CellType::Counter;
     near_mines_counter++;
 }
 
