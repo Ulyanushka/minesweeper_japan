@@ -34,6 +34,9 @@ FieldData::FieldData(int rows, int cols, int mines)
     : rows(rows), cols(cols), mines_number(mines), cells(cells_number), cells_number(rows*cols)
 {
     QSet<int> mines_cells = GetMinesPlaces();
+    for (int i = 0; i < cells_number; i++) {
+        cells[i] = new CellData();
+    }
     SetMinesAndCounters(mines_cells);
 }
 
