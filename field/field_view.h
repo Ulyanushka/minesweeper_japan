@@ -14,6 +14,9 @@ public:
     CellView(int id, CellData* data, QWidget* parent = nullptr);
     ~CellView();
 
+    void Open();
+    bool IsOpened();
+
 signals:
     void MineOpened(int id);
     void VoidOpened(int id);
@@ -22,7 +25,6 @@ protected:
     void mousePressEvent(QMouseEvent* e) override;
 
 private:
-    void Open();
     void Mark();
 
 private:

@@ -29,8 +29,15 @@ void CellView::mousePressEvent(QMouseEvent* e)
     else if (e->button() == Qt::RightButton) Mark();
 }
 
+bool CellView::IsOpened()
+{
+    return is_opened;
+}
+
 void CellView::Open()
 {
+    if (is_opened) return;
+
     is_opened = true;
     setText(data->GetText());
 
@@ -93,7 +100,7 @@ void FieldView::MakeCell(int id)
 
 void FieldView::OpenVoidArea(int id)
 {
-
+    //QList<int> neighbours = GetNeighbours(id);
 }
 
 void FieldView::Boom(int id)

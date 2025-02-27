@@ -51,27 +51,37 @@ QSet<int> FieldData::GetMinesPlaces()
     return mines_cells;
 }
 
+QList<int> FieldData::GetNeighbours(int id)
+{
+    QList<int> neighbours;
+
+    bool not_very_left = (id % cols != 0);
+    bool not_very_right = (id % cols != cols-1);
+
+    if (not_very_left) neighbours.append(id-1); //left
+    if (not_very_right) neighbours.append(id+1); //right
+
+    if (id >= cols) { //not very top
+        neighbours.append(id-cols); //top
+        if (not_very_left) neighbours.append(id-cols-1); //left top
+        if (not_very_right) neighbours.append(id-cols+1); //right top
+    }
+
+    if (id < cols*(rows-1)) { //not very bottom
+        neighbours.append(id+cols); //bottom
+        if (not_very_left) neighbours.append(id+cols-1); //left bottom
+        if (not_very_right) neighbours.append(id+cols+1); //right bottom
+    }
+
+    return neighbours;
+}
+
 void FieldData::SetMinesAndCounters(QSet<int>& mines_cells)
 {
     for (const auto& m : mines_cells) {
         cells[m].SetMine();
-
-        bool not_very_left = (m % cols != 0);
-        bool not_very_right = (m % cols != cols-1);
-
-        if (not_very_left) cells[m-1].IncreaseCounter(); //left
-        if (not_very_right) cells[m+1].IncreaseCounter(); //right
-
-        if (m >= cols) { //not very top
-            cells[m-cols].IncreaseCounter(); //top
-            if (not_very_left) cells[m-cols-1].IncreaseCounter(); //left top
-            if (not_very_right) cells[m-cols+1].IncreaseCounter(); //right top
-        }
-
-        if (m < cols*(rows-1)) { //not very bottom
-            cells[m+cols].IncreaseCounter(); //bottom
-            if (not_very_left) cells[m+cols-1].IncreaseCounter(); //left bottom
-            if (not_very_right) cells[m+cols+1].IncreaseCounter(); //right bottom
+        for (const auto& id : GetNeighbours(m)) {
+            cells[id].IncreaseCounter();
         }
     }
 }
