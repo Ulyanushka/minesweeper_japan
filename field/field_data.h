@@ -3,6 +3,7 @@
 
 #include <QSet>
 
+
 enum class CellType {
     Void,
     Counter,
