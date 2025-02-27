@@ -52,4 +52,3 @@ void FieldData::SetMinesAndCounters(QSet<int>& mines_cells)
         }
     }
 }
-
