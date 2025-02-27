@@ -111,4 +111,5 @@ void FieldView::OpenVoidArea(int id)
 void FieldView::Boom(int id)
 {
 
+
 }
