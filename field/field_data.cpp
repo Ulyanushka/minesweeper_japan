@@ -34,15 +34,11 @@ FieldData::FieldData(int rows, int cols, int mines)
     : rows(rows), cols(cols), mines_number(mines), cells(cells_number), cells_number(rows*cols)
 {
     QSet<int> mines_cells = GetMinesPlaces();
-    for (int i = 0; i < cells_number; i++) {
-        cells[i] = new CellData();
-    }
     SetMinesAndCounters(mines_cells);
 }
 
-CellData* FieldData::GetCellData(int id)
+CellData& FieldData::GetCellData(int id)
 {
-    if (id < 0 || id >= cells_number) return new CellData();
     return cells[id];
 }
 
@@ -58,24 +54,24 @@ QSet<int> FieldData::GetMinesPlaces()
 void FieldData::SetMinesAndCounters(QSet<int>& mines_cells)
 {
     for (const auto& m : mines_cells) {
-        cells[m]->SetMine();
+        cells[m].SetMine();
 
         bool not_very_left = (m % cols != 0);
         bool not_very_right = (m % cols != cols-1);
 
-        if (not_very_left) cells[m-1]->IncreaseCounter(); //left
-        if (not_very_right) cells[m+1]->IncreaseCounter(); //right
+        if (not_very_left) cells[m-1].IncreaseCounter(); //left
+        if (not_very_right) cells[m+1].IncreaseCounter(); //right
 
         if (m >= cols) { //not very top
-            cells[m-cols]->IncreaseCounter(); //top
-            if (not_very_left) cells[m-cols-1]->IncreaseCounter(); //left top
-            if (not_very_right) cells[m-cols+1]->IncreaseCounter(); //right top
+            cells[m-cols].IncreaseCounter(); //top
+            if (not_very_left) cells[m-cols-1].IncreaseCounter(); //left top
+            if (not_very_right) cells[m-cols+1].IncreaseCounter(); //right top
         }
 
         if (m < cols*(rows-1)) { //not very bottom
-            cells[m+cols]->IncreaseCounter(); //bottom
-            if (not_very_left) cells[m+cols-1]->IncreaseCounter(); //left bottom
-            if (not_very_right) cells[m+cols+1]->IncreaseCounter(); //right bottom
+            cells[m+cols].IncreaseCounter(); //bottom
+            if (not_very_left) cells[m+cols-1].IncreaseCounter(); //left bottom
+            if (not_very_right) cells[m+cols+1].IncreaseCounter(); //right bottom
         }
     }
 }

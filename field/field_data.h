@@ -33,7 +33,7 @@ public:
     FieldData(int rows, int cols, int mines);
     ~FieldData() = default;
 
-    CellData* GetCellData(int id);
+    CellData& GetCellData(int id);
 
 private:
     QSet<int> GetMinesPlaces();
@@ -45,7 +45,7 @@ private:
     int mines_number;
     int cells_number;
 
-    QList<CellData*> cells;
+    QList<CellData> cells;
 };
 
 #endif // FIELD_DATA_H

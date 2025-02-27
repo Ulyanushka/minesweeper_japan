@@ -12,7 +12,7 @@ class CellView : public QPushButton
     Q_OBJECT
 public:
     CellView(int id, CellData* data, QWidget* parent = nullptr);
-    ~CellView() = default;
+    ~CellView();
 
 signals:
     void MineOpened(int id);

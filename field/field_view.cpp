@@ -18,6 +18,11 @@ CellView::CellView(int id, CellData* data, QWidget* parent)
     setStyleSheet(normal_cell_color);
 }
 
+CellView::~CellView()
+{
+    data = nullptr;
+}
+
 void CellView::mousePressEvent(QMouseEvent* e)
 {
     if (e->button() == Qt::LeftButton) Open();
@@ -81,7 +86,7 @@ void FieldView::MakeField(int rows, int cols)
 
 void FieldView::MakeCell(int id)
 {
-    cells.push_back(new CellView(id, data->GetCellData(id)));
+    cells.push_back(new CellView(id, &data->GetCellData(id)));
     connect(cells[id], &CellView::VoidOpened, this, &FieldView::OpenVoidArea);
     connect(cells[id], &CellView::MineOpened, this, &FieldView::Boom);
 }
