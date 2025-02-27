@@ -11,12 +11,9 @@ inline static const char* counter_cell_color = "background-color: rgba(222, 246,
 inline static const char* void_cell_color = "background-color: rgba(0,0,0,0);";
 
 
-CellView::CellView(int id, const QString& data, QWidget* parent)
-    : QPushButton(parent), id(id), text(data)
+CellView::CellView(int id, CellData* data, QWidget* parent)
+    : QPushButton(parent), id(id), data(data)
 {
-    is_void = (text.isEmpty());
-    is_mine = (text == "M");
-
     setFixedSize(20, 20);
     setStyleSheet(normal_cell_color);
 }
@@ -30,19 +27,24 @@ void CellView::mousePressEvent(QMouseEvent* e)
 void CellView::Open()
 {
     is_opened = true;
-    setText(text);
+    setText(data->GetText());
 
-    if (is_mine) {
-        setStyleSheet(mine_cell_color);
-        emit MineOpened(id);
-    }
-    else if (is_void) {
-        setStyleSheet(void_cell_color);
-        emit VoidOpened(id);
-    }
-    else {
-        setStyleSheet(counter_cell_color);
-    }
+    switch (data->GetType()) {
+        case CellType::Mine: {
+            setStyleSheet(mine_cell_color);
+            emit MineOpened(id);
+            break;
+        }
+        case CellType::Counter: {
+            setStyleSheet(counter_cell_color);
+            break;
+        }
+        case CellType::Void: {
+            setStyleSheet(void_cell_color);
+            emit VoidOpened(id);
+            break;
+        }
+    };
 }
 
 void CellView::Mark()

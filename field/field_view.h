@@ -11,7 +11,7 @@ class CellView : public QPushButton
 {
     Q_OBJECT
 public:
-    CellView(int id, const QString& data, QWidget* parent = nullptr);
+    CellView(int id, CellData* data, QWidget* parent = nullptr);
     ~CellView() = default;
 
 signals:
@@ -28,11 +28,7 @@ private:
 private:
     int id;
     bool is_opened = false;
-
-    bool is_mine;
-    bool is_void;
-
-    QString text;
+    CellData* data;
 };
 
 

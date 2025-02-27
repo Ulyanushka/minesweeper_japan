@@ -3,10 +3,26 @@
 
 #include <QSet>
 
+enum class CellType {
+    Void,
+    Counter,
+    Mine
+};
 
-struct Cell {
-    Cell() = default;
-    bool is_mine = false;
+
+class CellData {
+public:
+    CellData() = default;
+    ~CellData() = default;
+
+    QString GetText() const;
+    CellType GetType() const;
+
+    void IncreaseCounter();
+    void SetMine();
+
+private:
+    CellType type = CellType::Void;
     int near_mines_counter = 0;
 };
 
@@ -14,10 +30,10 @@ struct Cell {
 class FieldData
 {
 public:
-    FieldData(int rows, int cols, int mines); //16,16,40
+    FieldData(int rows, int cols, int mines);
     ~FieldData() = default;
 
-    QString GetCellData(int i);
+    CellData* GetCellData(int id);
 
 private:
     QSet<int> GetMinesPlaces();
@@ -29,7 +45,7 @@ private:
     int mines_number;
     int cells_number;
 
-    QList<Cell> cells;
+    QList<CellData*> cells;
 };
 
 #endif // FIELD_DATA_H
