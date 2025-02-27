@@ -1,7 +1,6 @@
 #include "field_data.h"
 
 #include <QRandomGenerator>
-#include <QDebug>
 
 
 QString CellData::GetText() const
