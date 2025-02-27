@@ -11,19 +11,27 @@ class CellView : public QPushButton
 {
     Q_OBJECT
 public:
-    CellView(const QString& data, QWidget* parent = nullptr);
+    CellView(int id, const QString& data, QWidget* parent = nullptr);
     ~CellView() = default;
+
+signals:
+    void MineOpened(int id);
+    void VoidOpened(int id);
 
 protected:
     void mousePressEvent(QMouseEvent* e) override;
 
 private:
-    void Uncover();
+    void Open();
     void Mark();
 
 private:
+    int id;
+    bool is_opened = false;
+
     bool is_mine;
     bool is_void;
+
     QString text;
 };
 
@@ -37,6 +45,10 @@ public:
 
 private:
     void MakeField(int rows, int cols);
+    void MakeCell(int id);
+
+    void OpenVoidArea(int id);
+    void Boom(int id);
 
 private:
     QList<CellView*> cells;
