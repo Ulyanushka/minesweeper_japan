@@ -4,6 +4,35 @@
 #include "field_data.h"
 
 #include <QPushButton>
+#include <QMouseEvent>
+
+
+class CellView : public QPushButton
+{
+    Q_OBJECT
+public:
+    CellView(int id, CellData* data, QWidget* parent = nullptr);
+    ~CellView();
+
+    void Open();
+    bool IsOpened();
+
+signals:
+    void MineOpened(int id);
+    void VoidOpened(int id);
+
+protected:
+    void mousePressEvent(QMouseEvent* e) override;
+
+private:
+    void Mark();
+
+private:
+    int id;
+    bool is_opened = false;
+    bool is_marked = false;
+    CellData* data;
+};
 
 
 class FieldView: public QWidget
@@ -15,10 +44,13 @@ public:
 
 private:
     void MakeField(int rows, int cols);
-    void UncoverCell(int cell);
+    void MakeCell(int id);
+
+    void OpenVoidArea(int id);
+    void Boom(int id);
 
 private:
-    QList<QPushButton*> cells;
+    QList<CellView*> cells;
     FieldData* data;
 };
 
