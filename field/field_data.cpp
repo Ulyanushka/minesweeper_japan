@@ -3,6 +3,9 @@
 #include <QRandomGenerator>
 
 
+//CELL_DATA------------------------------------------------------------------------------
+
+
 QString CellData::GetText() const
 {
     switch (type) {
@@ -30,6 +33,9 @@ void CellData::SetMine()
 }
 
 
+//FIELD_DATA-----------------------------------------------------------------------------
+
+
 FieldData::FieldData(int rows, int cols, int mines)
     : rows(rows), cols(cols), mines_number(mines), cells(cells_number), cells_number(rows*cols)
 {
@@ -40,15 +46,6 @@ FieldData::FieldData(int rows, int cols, int mines)
 CellData& FieldData::GetCellData(int id)
 {
     return cells[id];
-}
-
-QSet<int> FieldData::GetMinesPlaces()
-{
-    QSet<int> mines_cells;
-    while (mines_cells.size() < mines_number) {
-        mines_cells.insert(QRandomGenerator::global()->bounded(cells_number));
-    }
-    return mines_cells;
 }
 
 QList<int> FieldData::GetNeighbours(int id)
@@ -74,6 +71,15 @@ QList<int> FieldData::GetNeighbours(int id)
     }
 
     return neighbours;
+}
+
+QSet<int> FieldData::GetMinesPlaces()
+{
+    QSet<int> mines_cells;
+    while (mines_cells.size() < mines_number) {
+        mines_cells.insert(QRandomGenerator::global()->bounded(cells_number));
+    }
+    return mines_cells;
 }
 
 void FieldData::SetMinesAndCounters(QSet<int>& mines_cells)

@@ -3,6 +3,9 @@
 #include <QGridLayout>
 
 
+//CELL_VIEW------------------------------------------------------------------------------
+
+
 inline static const char* closed_cell_color = "background-color: rgba(46, 204, 113, 0.4);";
 inline static const char* marked_cell_color = "background-color: rgba(46, 204, 113, 0.8);";
 
@@ -21,17 +24,6 @@ CellView::CellView(int id, CellData* data, QWidget* parent)
 CellView::~CellView()
 {
     data = nullptr;
-}
-
-void CellView::mousePressEvent(QMouseEvent* e)
-{
-    if (e->button() == Qt::LeftButton) Open();
-    else if (e->button() == Qt::RightButton) Mark();
-}
-
-bool CellView::IsOpened()
-{
-    return is_opened;
 }
 
 void CellView::Open()
@@ -59,12 +51,21 @@ void CellView::Open()
     };
 }
 
+void CellView::mousePressEvent(QMouseEvent* e)
+{
+    if (e->button() == Qt::LeftButton) Open();
+    else if (e->button() == Qt::RightButton) Mark();
+}
+
 void CellView::Mark()
 {
     if (is_opened) return;
     (is_marked) ? setStyleSheet(closed_cell_color) : setStyleSheet(marked_cell_color);
     is_marked = !is_marked;
 }
+
+
+//FIELD_VIEW-----------------------------------------------------------------------------
 
 
 FieldView::FieldView(int rows, int cols, int mines, QWidget* parent) : QWidget(parent)
@@ -100,15 +101,15 @@ void FieldView::MakeCell(int id)
     connect(cells[id], &CellView::MineOpened, this, &FieldView::Boom);
 }
 
-void FieldView::OpenVoidArea(int id)
+void FieldView::OpenVoidArea(int id_central_cell)
 {
-    QList<int> neighbours = data->GetNeighbours(id);
+    QList<int> neighbours = data->GetNeighbours(id_central_cell);
     for (const auto& n : neighbours) {
         cells[n]->Open();
     }
 }
 
-void FieldView::Boom(int id)
+void FieldView::Boom(int id_mine)
 {
-
+    emit FieldIsBoomed(id_mine);
 }

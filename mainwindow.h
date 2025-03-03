@@ -13,6 +13,10 @@ public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
+    void new_game(int rows, int cols, int mines);
+    void game_end();
+
+private:
     void SetField(int rows, int cols, int mines);
 
 private:

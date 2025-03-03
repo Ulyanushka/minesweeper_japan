@@ -15,7 +15,6 @@ public:
     ~CellView();
 
     void Open();
-    bool IsOpened();
 
 signals:
     void MineOpened(int id);
@@ -42,12 +41,15 @@ public:
     FieldView(int rows, int cols, int mines, QWidget* parent = nullptr);
     ~FieldView();
 
+signals:
+    void FieldIsBoomed(int id_mine);
+
 private:
     void MakeField(int rows, int cols);
     void MakeCell(int id);
 
-    void OpenVoidArea(int id);
-    void Boom(int id);
+    void OpenVoidArea(int id_central_cell);
+    void Boom(int id_mine);
 
 private:
     QList<CellView*> cells;
