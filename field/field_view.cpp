@@ -3,6 +3,9 @@
 #include <QGridLayout>
 
 
+//CELL_VIEW------------------------------------------------------------------------------
+
+
 inline static const char* closed_cell_color = "background-color: rgba(46, 204, 113, 0.4);";
 inline static const char* marked_cell_color = "background-color: rgba(46, 204, 113, 0.8);";
 
@@ -11,11 +14,10 @@ inline static const char* counter_cell_color = "background-color: rgba(222, 246,
 inline static const char* void_cell_color = "background-color: rgba(0,0,0,0);";
 
 
-CellView::CellView(int id, CellData* data, QWidget* parent)
-    : QPushButton(parent), id(id), data(data)
+CellView::CellView(int id, QWidget* parent)
+    : QPushButton(parent), id(id)
 {
     setFixedSize(20, 20);
-    setStyleSheet(closed_cell_color);
 }
 
 CellView::~CellView()
@@ -23,20 +25,21 @@ CellView::~CellView()
     data = nullptr;
 }
 
-void CellView::mousePressEvent(QMouseEvent* e)
+void CellView::UpdateData(CellData* new_data)
 {
-    if (e->button() == Qt::LeftButton) Open();
-    else if (e->button() == Qt::RightButton) Mark();
-}
+    data = new_data;
 
-bool CellView::IsOpened()
-{
-    return is_opened;
+    is_opened = false;
+    is_marked = false;
+
+    setStyleSheet(closed_cell_color);
+    setText("");
 }
 
 void CellView::Open()
 {
     if (is_opened) return;
+    if (is_marked) emit Unmarked();
 
     is_opened = true;
     setText(data->GetText());
@@ -59,18 +62,42 @@ void CellView::Open()
     };
 }
 
+void CellView::mousePressEvent(QMouseEvent* e)
+{
+    if (e->button() == Qt::LeftButton) {
+        Open();
+    }
+    else if (e->button() == Qt::RightButton) {
+        Mark();
+    }
+}
+
 void CellView::Mark()
 {
     if (is_opened) return;
-    (is_marked) ? setStyleSheet(closed_cell_color) : setStyleSheet(marked_cell_color);
+
+    if(is_marked) {
+        setStyleSheet(closed_cell_color);
+        emit Unmarked();
+    }
+    else {
+        setStyleSheet(marked_cell_color);
+        emit Marked();
+    }
+
     is_marked = !is_marked;
 }
 
 
-FieldView::FieldView(int rows, int cols, int mines, QWidget* parent) : QWidget(parent)
+//FIELD_VIEW-----------------------------------------------------------------------------
+
+
+FieldView::FieldView(int rows, int cols, int mines, QWidget* parent)
+    : QWidget(parent), rows(rows), cols(cols), mines(mines)
 {
     data = new FieldData(rows, cols, mines);
-    MakeField(rows, cols);
+    MakeField();
+    SetData();
 }
 
 FieldView::~FieldView()
@@ -79,7 +106,21 @@ FieldView::~FieldView()
     data = nullptr;
 }
 
-void FieldView::MakeField(int rows, int cols)
+void FieldView::Reset()
+{
+    SetData();
+}
+
+void FieldView::SetData()
+{
+    if (data != nullptr) delete data;
+    data = new FieldData(rows, cols, mines);
+    for (int i = 0; i < rows * cols; i++) {
+        cells[i]->UpdateData(&data->GetCellData(i));
+    }
+}
+
+void FieldView::MakeField()
 {
     QGridLayout* grid_lay = new QGridLayout(this);
     grid_lay->setHorizontalSpacing(0);
@@ -95,20 +136,22 @@ void FieldView::MakeField(int rows, int cols)
 
 void FieldView::MakeCell(int id)
 {
-    cells.push_back(new CellView(id, &data->GetCellData(id)));
+    cells.push_back(new CellView(id));
     connect(cells[id], &CellView::VoidOpened, this, &FieldView::OpenVoidArea);
     connect(cells[id], &CellView::MineOpened, this, &FieldView::Boom);
+    connect(cells[id], &CellView::Marked, this, [this](){ marks_counter++; emit MarksCounterChanged(marks_counter); });
+    connect(cells[id], &CellView::Unmarked, this, [this](){ marks_counter--; emit MarksCounterChanged(marks_counter); });
 }
 
-void FieldView::OpenVoidArea(int id)
+void FieldView::OpenVoidArea(int id_central_cell)
 {
-    QList<int> neighbours = data->GetNeighbours(id);
+    QList<int> neighbours = data->GetNeighbours(id_central_cell);
     for (const auto& n : neighbours) {
         cells[n]->Open();
     }
 }
 
-void FieldView::Boom(int id)
+void FieldView::Boom(int id_mine)
 {
-
+    emit FieldIsBoomed(id_mine);
 }
