@@ -38,8 +38,8 @@ public:
     QList<int> GetNeighbours(int id);
 
 private:
-    QSet<int> GetMinesPlaces();
-    void SetMinesAndCounters(QSet<int>& mines_cells);
+    QList<int> GetMinesPlaces();
+    void SetMinesAndCounters(QList<int>& mines_ids);
 
 private:
     int rows;

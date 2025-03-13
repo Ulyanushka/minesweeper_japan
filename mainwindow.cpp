@@ -1,33 +1,28 @@
 #include "mainwindow.h"
 
-#include <QVBoxLayout>
+#include <QLayout>
 
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 {
-    rows = 16;
-    cols = 16;
-    mines = 40;
+    setWindowTitle("~~Minesweeper~~");
 
-    SetupGameoverMsgBox();
+    SetupMsgBoxes();
+    SetupSetuper();
 
-    QGridLayout* data_lay = new QGridLayout();
-    data_lay->setHorizontalSpacing(10);
-    data_lay->setVerticalSpacing(5);
+    QGridLayout* ui_lay = new QGridLayout();
+    ui_lay->setHorizontalSpacing(10);
+    ui_lay->setVerticalSpacing(5);
 
-    SetMinesData(0);
-    data_lay->addWidget(&mines_data, 0, 0, 2, 1, Qt::AlignHCenter);
-    SetupResetBtn();
-    data_lay->addWidget(&reset_btn, 0, 1, 2, 1, Qt::AlignHCenter);
-    SetFieldData();
-    data_lay->addWidget(&field_data, 0, 2, 2, 1, Qt::AlignHCenter);
-    //SetupSetuperBtn();
-    //data_lay->addWidget(&setuper_btn, 1, 2, Qt::AlignHCenter);
+    SetupUI();
+    ui_lay->addWidget(stats, 0, 0, 4, 1, Qt::AlignRight);
+    ui_lay->addWidget(reset_btn, 1, 1, Qt::AlignLeft);
+    ui_lay->addWidget(setuper_btn, 2, 1, Qt::AlignLeft);
 
     QVBoxLayout* main_lay = new QVBoxLayout();
-    main_lay->addLayout(data_lay);
+    main_lay->addLayout(ui_lay);
     SetupField();
-    main_lay->addWidget(field);
+    main_lay->addWidget(field, 0, Qt::AlignHCenter);
 
     QWidget* w = new QWidget();
     w->setLayout(main_lay);
@@ -37,66 +32,105 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
-MainWindow::~MainWindow()
+void MainWindow::SetupMsgBoxes()
 {
-    if (field != nullptr) delete field;
-    field = nullptr;
+    looser_msgbox = new QMessageBox();
+    looser_msgbox->setWindowTitle("GameOver");
+    looser_msgbox->setText("FIeld is boomed");
+
+    again_for_loosers_btn = new QPushButton("Again");
+    looser_msgbox->addButton(again_for_loosers_btn, QMessageBox::ActionRole);
+    sorry_btn = new QPushButton("Sorry");
+    looser_msgbox->addButton(sorry_btn, QMessageBox::ActionRole);
+
+    winner_msgbox = new QMessageBox();
+    winner_msgbox->setWindowTitle("Win!");
+    winner_msgbox->setText("You are such a beauty!\nGeronimo!");
+
+    again_for_winners_btn = new QPushButton("One more");
+    winner_msgbox->addButton(again_for_winners_btn, QMessageBox::ActionRole);
+    super_btn = new QPushButton("Get rest");
+    winner_msgbox->addButton(super_btn, QMessageBox::ActionRole);
 }
 
-void MainWindow::SetupGameoverMsgBox()
+void MainWindow::SetupSetuper()
 {
-    gameover_msgbox.setText("FIeld is boomed.\nGame over.");
-    again_btn.setText("Again");
-    gameover_msgbox.addButton(&again_btn, QMessageBox::ActionRole);
+    setuper = new Setuper(&settings);
+    connect(setuper, &Setuper::FieldSizeChanged, this, &MainWindow::RebuildField);
+    connect(setuper, &Setuper::FieldDetailsChanged, this, &MainWindow::ResetField);
 }
 
-void MainWindow::SetupResetBtn()
+void MainWindow::SetupUI()
 {
-    reset_btn.setText("Reset");
-    connect(&reset_btn, &QPushButton::clicked, this, &MainWindow::ResetField);
+    stats = new StatData();
+    stats->Reset(settings.mines);
+
+    reset_btn = new QPushButton("Reset");
+    connect(reset_btn, &QPushButton::clicked, this, &MainWindow::ResetField);
+
+    setuper_btn = new QPushButton("Settings");
+    connect(setuper_btn, &QPushButton::clicked, setuper, &Setuper::show);
 }
 
 void MainWindow::SetupField()
 {
-    if (field != nullptr) delete field;
-    field = new FieldView(rows, cols, mines);
+    field = new FieldView(settings.rows, settings.cols, settings.mines);
+
+    connect(field, &FieldView::FieldIsCompleted, this, &MainWindow::Win);
     connect(field, &FieldView::FieldIsBoomed, this, &MainWindow::GameOver);
-    connect(field, &FieldView::MarksCounterChanged, this, &MainWindow::SetMinesData);
+
+    connect(field, &FieldView::MarksCounterChanged, stats, &StatData::UpdateMinesData);
+    connect(field, &FieldView::Clicked, stats, &StatData::AddClick);
 }
 
-void MainWindow::SetupSetuperBtn()
+void MainWindow::RebuildField()
 {
-    setuper_btn.setText("Change...");
-    connect(&reset_btn, &QPushButton::clicked, this, &MainWindow::ChangeFieldData);
-}
-
-void MainWindow::GameOver()
-{
-    gameover_msgbox.exec();
-    if(gameover_msgbox.clickedButton() == &again_btn) {
-        ResetField();
+    if (field != nullptr) {
+        centralWidget()->layout()->takeAt(1)->invalidate();
+        delete field;
     }
+    SetupField();
+
+    QVBoxLayout* field_lay = new QVBoxLayout();
+    field_lay->addWidget(field, 0, Qt::AlignHCenter);
+
+    QWidget* field_w = new QWidget();
+    field_w->setLayout(field_lay);
+    centralWidget()->layout()->addWidget(field_w);
+
+    stats->Reset(settings.mines);
 }
 
 void MainWindow::ResetField()
 {
-    field->Reset();
-    SetMinesData(0);
+    field->Reset(settings.mines);
+    stats->Reset(settings.mines);
 }
 
-void MainWindow::SetMinesData(int counter)
+void MainWindow::ForgiveMistake()
 {
-    mines_data.setText(QString("Marks/Mines:\n%1/%2").arg(counter).arg(mines));
+    field->HideMine();
+    stats->AddMistake();
 }
 
-void MainWindow::SetFieldData()
+void MainWindow::GameOver()
 {
-    auto cells = rows*cols;
-    field_data.setText(QString("Field: %1x%2 (%3 cells)\nMines: %4 (%5%)")
-                           .arg(rows).arg(cols).arg(cells).arg(mines).arg(mines*100/cells));
+    looser_msgbox->exec();
+    if (looser_msgbox->clickedButton() == again_for_loosers_btn) {
+        ResetField();
+    }
+    if (looser_msgbox->clickedButton() == sorry_btn) {
+        ForgiveMistake();
+    }
 }
 
-void MainWindow::ChangeFieldData()
+void MainWindow::Win()
 {
-
+    winner_msgbox->exec();
+    if (winner_msgbox->clickedButton() == again_for_winners_btn) {
+        ResetField();
+    }
+    if (winner_msgbox->clickedButton() == super_btn) {
+        winner_msgbox->close();
+    }
 }

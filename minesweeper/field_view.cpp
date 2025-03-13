@@ -1,10 +1,9 @@
 #include "field_view.h"
 
-#include <QGridLayout>
+#include <QLayout>
 
 
 //CELL_VIEW------------------------------------------------------------------------------
-
 
 inline static const char* closed_cell_color = "background-color: rgba(46, 204, 113, 0.4);";
 inline static const char* marked_cell_color = "background-color: rgba(46, 204, 113, 0.8);";
@@ -28,12 +27,8 @@ CellView::~CellView()
 void CellView::UpdateData(CellData* new_data)
 {
     data = new_data;
-
-    is_opened = false;
-    is_marked = false;
-
-    setStyleSheet(closed_cell_color);
-    setText("");
+    Close();
+    setStyleSheet(closed_cell_color);    
 }
 
 void CellView::Open()
@@ -52,6 +47,7 @@ void CellView::Open()
         }
         case CellType::Counter: {
             setStyleSheet(counter_cell_color);
+            emit CounterOpened();
             break;
         }
         case CellType::Void: {
@@ -62,14 +58,30 @@ void CellView::Open()
     };
 }
 
+void CellView::Hide()
+{
+    Close();
+    Mark();
+}
+
 void CellView::mousePressEvent(QMouseEvent* e)
 {
+    if (!(e->button() == Qt::LeftButton || e->button() == Qt::RightButton)) return;
+    if (!is_opened) emit Clicked();
+
     if (e->button() == Qt::LeftButton) {
         Open();
     }
     else if (e->button() == Qt::RightButton) {
         Mark();
     }
+}
+
+void CellView::Close()
+{
+    is_opened = false;
+    is_marked = false;
+    setText("");
 }
 
 void CellView::Mark()
@@ -91,13 +103,11 @@ void CellView::Mark()
 
 //FIELD_VIEW-----------------------------------------------------------------------------
 
-
 FieldView::FieldView(int rows, int cols, int mines, QWidget* parent)
     : QWidget(parent), rows(rows), cols(cols), mines(mines)
 {
-    data = new FieldData(rows, cols, mines);
-    MakeField();
-    SetData();
+    ResetField();
+    ResetData();
 }
 
 FieldView::~FieldView()
@@ -106,12 +116,21 @@ FieldView::~FieldView()
     data = nullptr;
 }
 
-void FieldView::Reset()
+void FieldView::Reset(int new_mines)
 {
-    SetData();
+    mines = new_mines;
+    detected_cells_counter = 0;
+    marks_counter = 0;
+
+    ResetData();
 }
 
-void FieldView::SetData()
+void FieldView::HideMine()
+{
+    cells[opened_mine]->Hide();
+}
+
+void FieldView::ResetData()
 {
     if (data != nullptr) delete data;
     data = new FieldData(rows, cols, mines);
@@ -120,27 +139,58 @@ void FieldView::SetData()
     }
 }
 
-void FieldView::MakeField()
+void FieldView::ResetField()
 {
-    QGridLayout* grid_lay = new QGridLayout(this);
-    grid_lay->setHorizontalSpacing(0);
-    grid_lay->setVerticalSpacing(0);
+    QGridLayout* field_lay = new QGridLayout(this);
+    field_lay->setHorizontalSpacing(0);
+    field_lay->setVerticalSpacing(0);
 
     for (int i = 0; i < rows * cols; i++) {
         MakeCell(i);
-        grid_lay->addWidget(cells[i], i / cols, i % cols);
+        field_lay->addWidget(cells[i], i / cols, i % cols);
     }
 
-    setLayout(grid_lay);
+    setLayout(field_lay);
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 void FieldView::MakeCell(int id)
 {
     cells.push_back(new CellView(id));
-    connect(cells[id], &CellView::VoidOpened, this, &FieldView::OpenVoidArea);
+
+    connect(cells[id], &CellView::Clicked, this, &FieldView::Clicked);
     connect(cells[id], &CellView::MineOpened, this, &FieldView::Boom);
-    connect(cells[id], &CellView::Marked, this, [this](){ marks_counter++; emit MarksCounterChanged(marks_counter); });
-    connect(cells[id], &CellView::Unmarked, this, [this](){ marks_counter--; emit MarksCounterChanged(marks_counter); });
+
+    connect(cells[id], &CellView::CounterOpened, this, [this](){
+        detected_cells_counter++;
+        CheckIsCompleted();
+    });
+
+    connect(cells[id], &CellView::VoidOpened, this, [this](int id){
+        detected_cells_counter++;
+        OpenVoidArea(id);
+        CheckIsCompleted();
+    });
+
+    connect(cells[id], &CellView::Marked, this, [this](){
+        marks_counter++;
+        detected_cells_counter++;
+        CheckIsCompleted();
+        emit MarksCounterChanged(marks_counter);
+    });
+
+    connect(cells[id], &CellView::Unmarked, this, [this](){
+        marks_counter--;
+        detected_cells_counter--;
+        emit MarksCounterChanged(marks_counter);
+    });
+}
+
+void FieldView::CheckIsCompleted()
+{
+    if ((marks_counter == mines) && (detected_cells_counter == cells.size())) {
+        emit FieldIsCompleted();
+    }
 }
 
 void FieldView::OpenVoidArea(int id_central_cell)
@@ -153,5 +203,6 @@ void FieldView::OpenVoidArea(int id_central_cell)
 
 void FieldView::Boom(int id_mine)
 {
-    emit FieldIsBoomed(id_mine);
+    opened_mine = id_mine;
+    emit FieldIsBoomed();
 }

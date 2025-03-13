@@ -23,7 +23,9 @@ CellType CellData::GetType() const
 
 void CellData::IncreaseCounter()
 {
-    if (near_mines_counter == 0 && type != CellType::Mine) type = CellType::Counter;
+    if ((near_mines_counter == 0) && (type != CellType::Mine)) {
+        type = CellType::Counter;
+    }
     near_mines_counter++;
 }
 
@@ -37,10 +39,11 @@ void CellData::SetMine()
 
 
 FieldData::FieldData(int rows, int cols, int mines)
-    : rows(rows), cols(cols), mines_number(mines), cells(cells_number), cells_number(rows*cols)
+    : rows(rows), cols(cols), mines_number(mines),
+    cells(cells_number), cells_number(rows*cols)
 {
-    QSet<int> mines_cells = GetMinesPlaces();
-    SetMinesAndCounters(mines_cells);
+    QList<int> mines_ids = GetMinesPlaces();
+    SetMinesAndCounters(mines_ids);
 }
 
 CellData& FieldData::GetCellData(int id)
@@ -73,18 +76,23 @@ QList<int> FieldData::GetNeighbours(int id)
     return neighbours;
 }
 
-QSet<int> FieldData::GetMinesPlaces()
+QList<int> FieldData::GetMinesPlaces()
 {
-    QSet<int> mines_cells;
-    while (mines_cells.size() < mines_number) {
-        mines_cells.insert(QRandomGenerator::global()->bounded(cells_number));
+    QList<int> source;
+    for (int i = 0; i < cells_number; i++) {
+        source.append(i);
     }
-    return mines_cells;
+
+    QList<int> mines_ids;
+    for (int i = 0; i < mines_number; i++) {
+        mines_ids.append(source.takeAt(QRandomGenerator::global()->bounded(source.size())));
+    }
+    return mines_ids;
 }
 
-void FieldData::SetMinesAndCounters(QSet<int>& mines_cells)
+void FieldData::SetMinesAndCounters(QList<int>& mines_ids)
 {
-    for (const auto& m : mines_cells) {
+    for (const auto& m : mines_ids) {
         cells[m].SetMine();
         for (const auto& id : GetNeighbours(m)) {
             cells[id].IncreaseCounter();

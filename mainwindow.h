@@ -5,7 +5,9 @@
 #include <QMessageBox>
 #include <QLabel>
 
-#include "field/field_view.h"
+#include "minesweeper/field_view.h"
+#include "minesweeper/stat_data.h"
+#include "setuper.h"
 
 
 class MainWindow : public QMainWindow
@@ -13,35 +15,39 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     MainWindow(QWidget* parent = nullptr);
-    ~MainWindow();
-
-    void NewGame(int rows, int cols, int mines);
+    ~MainWindow() = default;
 
 private:
-    void SetupGameoverMsgBox();
-    void ResetMinesData();
-    void SetupResetBtn();
+    void SetupMsgBoxes();
+    void SetupSetuper();
+
+    void SetupUI();
     void SetupField();
-    void SetupSetuperBtn();
 
-    void GameOver();
+    void RebuildField();
     void ResetField();
+    void ResetStats();
 
-    void SetMinesData(int counter);
-    void SetFieldData();
-    void ChangeFieldData();
+    void ForgiveMistake();
+    void GameOver();
+    void Win();
 
 private:
-    QLabel mines_data;
-    QPushButton reset_btn;
-    QLabel field_data;
-    QPushButton setuper_btn;
+    StatData* stats;
+    QPushButton* reset_btn;
+    QPushButton* setuper_btn;
 
-    int rows, cols, mines = 0;
+    Setuper* setuper;
+    Settings settings;
     FieldView* field = nullptr;
 
-    QMessageBox gameover_msgbox;
-    QPushButton again_btn;
+    QMessageBox* looser_msgbox;
+    QPushButton* again_for_loosers_btn;
+    QPushButton* sorry_btn;
+
+    QMessageBox* winner_msgbox;
+    QPushButton* again_for_winners_btn;
+    QPushButton* super_btn;
 };
 
 #endif // MAINWINDOW_H
