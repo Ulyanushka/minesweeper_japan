@@ -14,11 +14,10 @@ Quiz::Quiz(QWidget* parent) : QWidget(parent)
     main_lay->setVerticalSpacing(5);
 
     question_lbl = new QLabel("QUESTION", this);
-    main_lay->addWidget(question_lbl, 0, 0, num_of_answers, 1, Qt::AlignHCenter);
+    main_lay->addWidget(question_lbl, 0, 0, num_of_answers/2, 1, Qt::AlignHCenter);
 
-    for (int i = 0; i < num_of_answers; i++)
-    {
+    for (int i = 0; i < num_of_answers; i++) {
         answers_lbls.append(new QLabel(QString("Answer %1").arg(i), this));
-        main_lay->addWidget(answers_lbls[i], i, 1, Qt::AlignHCenter);
+        main_lay->addWidget(answers_lbls[i], i%4, i/4+1, Qt::AlignHCenter);
     }
 }
