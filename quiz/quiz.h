@@ -2,6 +2,7 @@
 #define QUIZ_H
 
 #include <QLabel>
+#include <QPushButton>>
 
 #include "quiz_data.h"
 #include "data_reader.h"
@@ -23,9 +24,12 @@ public:
     Quiz(QWidget* parent = nullptr);
     ~Quiz() = default;
 
+public:
+    void LoadData(QString& file_path);
+
 private:
     QLabel* question_lbl;
-    QList<QLabel*> answers_lbls;
+    QList<QPushButton*> answers_btns;
 
     QuizStatData stats;
     DataReader* reader;

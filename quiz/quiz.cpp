@@ -17,7 +17,7 @@ Quiz::Quiz(QWidget* parent) : QWidget(parent)
     main_lay->addWidget(question_lbl, 0, 0, num_of_answers/2, 1, Qt::AlignHCenter);
 
     for (int i = 0; i < num_of_answers; i++) {
-        answers_lbls.append(new QLabel(QString("Answer %1").arg(i), this));
-        main_lay->addWidget(answers_lbls[i], i%4, i/4+1, Qt::AlignHCenter);
+        answers_btns.append(new QPushButton(QString("Answer %1").arg(i), this));
+        main_lay->addWidget(answers_btns[i], i%4, i/4+1, Qt::AlignHCenter);
     }
 }

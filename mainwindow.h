@@ -35,8 +35,8 @@ private:
     void ForgiveMistake();
 
 private:
-    QPushButton* TEST_quiz_btn;
-    Quiz* TEST_quiz;
+    QPushButton* quiz_btn;
+    Quiz* quiz;
 
     GameEndMsgBox* loose_game_msgbox;
     GameEndMsgBox* win_game_msgbox;

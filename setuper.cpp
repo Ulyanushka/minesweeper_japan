@@ -67,6 +67,8 @@ Setuper::Setuper(Settings* settings, QWidget* parent)
     SetupBtns();
     main_lay->addWidget(cancel_btn, 6, 0, Qt::AlignHCenter);
     main_lay->addWidget(save_btn, 6, 1, Qt::AlignHCenter);
+
+    setFixedSize(minimumSize());
 }
 
 Setuper::~Setuper()

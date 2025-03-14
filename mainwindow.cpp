@@ -13,17 +13,20 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     SetupSetuper();
 
     QWidget* main_w = new QWidget(this);
+    setCentralWidget(main_w);
     QVBoxLayout* main_lay = new QVBoxLayout(main_w);
+    //main_lay->setSizeConstraint(QLayout::SetFixedSize);
 
     QWidget* TEST_w = new QWidget(this);
     QHBoxLayout* TEST_lay = new QHBoxLayout(TEST_w);
-    TEST_lay->addWidget(TEST_quiz_btn);
+    TEST_lay->addWidget(quiz_btn);
     main_lay->addWidget(TEST_w);
 
     QWidget* ui_w = new QWidget(this);
     QGridLayout* ui_lay = new QGridLayout(ui_w);
     ui_lay->setHorizontalSpacing(10);
     ui_lay->setVerticalSpacing(5);
+
     SetupUI();
     ui_lay->addWidget(stats, 0, 0, 4, 1, Qt::AlignRight);
     ui_lay->addWidget(reset_btn, 1, 1, Qt::AlignLeft);
@@ -33,7 +36,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     SetupField();
     main_lay->addWidget(field, 0, Qt::AlignHCenter);
 
-    setCentralWidget(main_w);
     //setFixedSize(minimumSize());
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
@@ -43,15 +45,15 @@ MainWindow::~MainWindow()
     if (setuper != nullptr) delete setuper;
     setuper = nullptr;
 
-    if (TEST_quiz != nullptr) delete TEST_quiz;
-    TEST_quiz = nullptr;
+    if (quiz != nullptr) delete quiz;
+    quiz = nullptr;
 }
 
 void MainWindow::SetupQuiz()
 {
-    TEST_quiz_btn = new QPushButton("Try Quiz", this);
-    TEST_quiz = new Quiz();
-    connect(TEST_quiz_btn, &QPushButton::clicked, TEST_quiz, &Quiz::show);
+    quiz_btn = new QPushButton("Try Quiz", this);
+    quiz = new Quiz();
+    connect(quiz_btn, &QPushButton::clicked, quiz, &Quiz::show);
 }
 
 void MainWindow::SetupMsgBoxes()
