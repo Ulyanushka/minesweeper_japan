@@ -18,7 +18,9 @@ set(PROJECT_SOURCES
 
         setuper.h setuper.cpp
 
+        minesweeper/game_end_msgbox.h minesweeper/game_end_msgbox.cpp
         minesweeper/stat_data.h minesweeper/stat_data.cpp
+
         minesweeper/field_data.h minesweeper/field_data.cpp
         minesweeper/field_view.h minesweeper/field_view.cpp
 

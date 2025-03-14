@@ -46,7 +46,7 @@ private:
     void CheckChanges();
 
 private:
-    Settings* cur;
+    Settings* cur = nullptr;
     Settings temp;
 
     QLineEdit* rows_le;

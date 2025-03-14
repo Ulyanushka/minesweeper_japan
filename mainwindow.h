@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QLabel>
 
+#include "minesweeper/game_end_msgbox.h"
 #include "minesweeper/field_view.h"
 #include "minesweeper/stat_data.h"
 #include "setuper.h"
@@ -15,7 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     MainWindow(QWidget* parent = nullptr);
-    ~MainWindow() = default;
+    ~MainWindow();
 
 private:
     void SetupMsgBoxes();
@@ -29,25 +30,19 @@ private:
     void ResetStats();
 
     void ForgiveMistake();
-    void GameOver();
-    void Win();
 
 private:
+    GameEndMsgBox* loose_game_msgbox;
+    GameEndMsgBox* win_game_msgbox;
+
+    Setuper* setuper;
+    Settings settings;
+
     StatData* stats;
     QPushButton* reset_btn;
     QPushButton* setuper_btn;
 
-    Setuper* setuper;
-    Settings settings;
     FieldView* field = nullptr;
-
-    QMessageBox* looser_msgbox;
-    QPushButton* again_for_loosers_btn;
-    QPushButton* sorry_btn;
-
-    QMessageBox* winner_msgbox;
-    QPushButton* again_for_winners_btn;
-    QPushButton* super_btn;
 };
 
 #endif // MAINWINDOW_H

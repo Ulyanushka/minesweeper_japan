@@ -10,7 +10,11 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     SetupMsgBoxes();
     SetupSetuper();
 
-    QGridLayout* ui_lay = new QGridLayout(this);
+    QWidget* main_w = new QWidget(this);
+    QVBoxLayout* main_lay = new QVBoxLayout(main_w);
+
+    QWidget* ui_w = new QWidget(this);
+    QGridLayout* ui_lay = new QGridLayout(ui_w);
     ui_lay->setHorizontalSpacing(10);
     ui_lay->setVerticalSpacing(5);
 
@@ -19,43 +23,35 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     ui_lay->addWidget(reset_btn, 1, 1, Qt::AlignLeft);
     ui_lay->addWidget(setuper_btn, 2, 1, Qt::AlignLeft);
 
-    QVBoxLayout* main_lay = new QVBoxLayout(this);
-    main_lay->addLayout(ui_lay);
+    main_lay->addWidget(ui_w);
     SetupField();
     main_lay->addWidget(field, 0, Qt::AlignHCenter);
 
-    QWidget* w = new QWidget(this);
-    w->setLayout(main_lay);
-    setCentralWidget(w);
-
+    setCentralWidget(main_w);
     //setFixedSize(minimumSize());
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
+MainWindow::~MainWindow()
+{
+    if (setuper != nullptr) delete setuper;
+    setuper = nullptr;
+}
+
 void MainWindow::SetupMsgBoxes()
 {
-    looser_msgbox = new QMessageBox(this);
-    looser_msgbox->setWindowTitle("GameOver");
-    looser_msgbox->setText("FIeld is boomed");
+    loose_game_msgbox = new GameEndMsgBox("GameOver", "FIeld is boomed.", "Try again", "Sorry");
+    connect(loose_game_msgbox, &GameEndMsgBox::AgainClicked, this, &MainWindow::ResetField);
+    connect(loose_game_msgbox, &GameEndMsgBox::ContinueClicked, this, &MainWindow::ForgiveMistake);
 
-    again_for_loosers_btn = new QPushButton("Again", this);
-    looser_msgbox->addButton(again_for_loosers_btn, QMessageBox::ActionRole);
-    sorry_btn = new QPushButton("Sorry", this);
-    looser_msgbox->addButton(sorry_btn, QMessageBox::ActionRole);
-
-    winner_msgbox = new QMessageBox(this);
-    winner_msgbox->setWindowTitle("Win!");
-    winner_msgbox->setText("You are such a beauty!\nGeronimo!");
-
-    again_for_winners_btn = new QPushButton("One more", this);
-    winner_msgbox->addButton(again_for_winners_btn, QMessageBox::ActionRole);
-    super_btn = new QPushButton("Get rest", this);
-    winner_msgbox->addButton(super_btn, QMessageBox::ActionRole);
+    win_game_msgbox = new GameEndMsgBox("Win", "You are such a beauty!\nGeronimo!", "Try again", "Get rest");
+    connect(win_game_msgbox, &GameEndMsgBox::AgainClicked, this, &MainWindow::ResetField);
+    connect(win_game_msgbox, &GameEndMsgBox::ContinueClicked, win_game_msgbox, &GameEndMsgBox::close);
 }
 
 void MainWindow::SetupSetuper()
 {
-    setuper = new Setuper(&settings, this);
+    setuper = new Setuper(&settings);
     connect(setuper, &Setuper::FieldSizeChanged, this, &MainWindow::RebuildField);
     connect(setuper, &Setuper::FieldDetailsChanged, this, &MainWindow::ResetField);
 }
@@ -76,8 +72,8 @@ void MainWindow::SetupField()
 {
     field = new FieldView(settings.rows, settings.cols, settings.mines, this);
 
-    connect(field, &FieldView::FieldIsCompleted, this, &MainWindow::Win);
-    connect(field, &FieldView::FieldIsBoomed, this, &MainWindow::GameOver);
+    connect(field, &FieldView::FieldIsCompleted, win_game_msgbox, &GameEndMsgBox::exec);
+    connect(field, &FieldView::FieldIsBoomed, loose_game_msgbox, &GameEndMsgBox::exec);
 
     connect(field, &FieldView::MarksCounterChanged, stats, &StatData::UpdateMinesData);
     connect(field, &FieldView::Clicked, stats, &StatData::AddClick);
@@ -91,11 +87,9 @@ void MainWindow::RebuildField()
     }
     SetupField();
 
-    QVBoxLayout* field_lay = new QVBoxLayout(this);
-    field_lay->addWidget(field, 0, Qt::AlignHCenter);
-
     QWidget* field_w = new QWidget(this);
-    field_w->setLayout(field_lay);
+    QVBoxLayout* field_lay = new QVBoxLayout(field_w);
+    field_lay->addWidget(field, 0, Qt::AlignHCenter);
     centralWidget()->layout()->addWidget(field_w);
 
     stats->Reset(settings.mines);
@@ -111,26 +105,4 @@ void MainWindow::ForgiveMistake()
 {
     field->HideMine();
     stats->AddMistake();
-}
-
-void MainWindow::GameOver()
-{
-    looser_msgbox->exec();
-    if (looser_msgbox->clickedButton() == again_for_loosers_btn) {
-        ResetField();
-    }
-    if (looser_msgbox->clickedButton() == sorry_btn) {
-        ForgiveMistake();
-    }
-}
-
-void MainWindow::Win()
-{
-    winner_msgbox->exec();
-    if (winner_msgbox->clickedButton() == again_for_winners_btn) {
-        ResetField();
-    }
-    if (winner_msgbox->clickedButton() == super_btn) {
-        winner_msgbox->close();
-    }
 }

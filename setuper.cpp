@@ -73,7 +73,7 @@ Setuper::Setuper(Settings* settings, QWidget* parent)
 
 Setuper::~Setuper()
 {
-    if (cur != nullptr) delete cur;
+    cur = nullptr;
 }
 
 void Setuper::SetupUI()
