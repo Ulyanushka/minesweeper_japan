@@ -25,7 +25,9 @@ set(PROJECT_SOURCES
         minesweeper/field_view.h minesweeper/field_view.cpp
 
         quiz/quiz.h quiz/quiz.cpp
+        quiz/quiz_data.h quiz/quiz_data.cpp
         quiz/data_reader.h quiz/data_reader.cpp
+
         quiz/data/jap_kanji_n5.xml
 
         trash/cells_model.h trash/cells_model.cpp

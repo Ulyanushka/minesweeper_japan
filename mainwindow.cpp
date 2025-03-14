@@ -7,23 +7,29 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 {
     setWindowTitle("~~Minesweeper~~");
 
+    SetupQuiz();
+
     SetupMsgBoxes();
     SetupSetuper();
 
     QWidget* main_w = new QWidget(this);
     QVBoxLayout* main_lay = new QVBoxLayout(main_w);
 
+    QWidget* TEST_w = new QWidget(this);
+    QHBoxLayout* TEST_lay = new QHBoxLayout(TEST_w);
+    TEST_lay->addWidget(TEST_quiz_btn);
+    main_lay->addWidget(TEST_w);
+
     QWidget* ui_w = new QWidget(this);
     QGridLayout* ui_lay = new QGridLayout(ui_w);
     ui_lay->setHorizontalSpacing(10);
     ui_lay->setVerticalSpacing(5);
-
     SetupUI();
     ui_lay->addWidget(stats, 0, 0, 4, 1, Qt::AlignRight);
     ui_lay->addWidget(reset_btn, 1, 1, Qt::AlignLeft);
     ui_lay->addWidget(setuper_btn, 2, 1, Qt::AlignLeft);
-
     main_lay->addWidget(ui_w);
+
     SetupField();
     main_lay->addWidget(field, 0, Qt::AlignHCenter);
 
@@ -36,6 +42,16 @@ MainWindow::~MainWindow()
 {
     if (setuper != nullptr) delete setuper;
     setuper = nullptr;
+
+    if (TEST_quiz != nullptr) delete TEST_quiz;
+    TEST_quiz = nullptr;
+}
+
+void MainWindow::SetupQuiz()
+{
+    TEST_quiz_btn = new QPushButton("Try Quiz", this);
+    TEST_quiz = new Quiz();
+    connect(TEST_quiz_btn, &QPushButton::clicked, TEST_quiz, &Quiz::show);
 }
 
 void MainWindow::SetupMsgBoxes()

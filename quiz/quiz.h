@@ -1,44 +1,10 @@
 #ifndef QUIZ_H
 #define QUIZ_H
 
-#include <QObject>
-#include <QWidget>
+#include <QLabel>
 
+#include "quiz_data.h"
 #include "data_reader.h"
-
-
-enum class Example {
-    Word,
-    Reading,
-    Definition
-};
-
-
-struct DataItem
-{
-    int id;
-    QString character;
-    QString definition;
-    QStringList example_1;
-    QStringList example_2;
-};
-
-
-class QuizData
-{
-public:
-    QuizData(const QString& title, const QList<DataItem>& data);
-    ~QuizData() = default;
-
-    DataItem* GetQuestionData();
-    QStringList GetWrongAnswers(int right_answer_id, int num_of_answers);
-
-private:
-    DataItem* GetRandomItem();
-
-private:
-    QList<DataItem> data;
-};
 
 
 struct QuizStatData
@@ -58,6 +24,9 @@ public:
     ~Quiz() = default;
 
 private:
+    QLabel* question_lbl;
+    QList<QLabel*> answers_lbls;
+
     QuizStatData stats;
     DataReader* reader;
     QuizData* data;

@@ -142,6 +142,7 @@ void FieldView::ResetData()
 void FieldView::ResetField()
 {
     QGridLayout* field_lay = new QGridLayout(this);
+    field_lay->setSizeConstraint(QLayout::SetFixedSize);
     field_lay->setHorizontalSpacing(0);
     field_lay->setVerticalSpacing(0);
 
@@ -150,8 +151,7 @@ void FieldView::ResetField()
         field_lay->addWidget(cells[i], i / cols, i % cols);
     }
 
-    setLayout(field_lay);
-    layout()->setSizeConstraint(QLayout::SetFixedSize);
+    //layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 void FieldView::MakeCell(int id)

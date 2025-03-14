@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QLabel>
 
+#include "quiz/quiz.h"
 #include "minesweeper/game_end_msgbox.h"
 #include "minesweeper/field_view.h"
 #include "minesweeper/stat_data.h"
@@ -19,6 +20,8 @@ public:
     ~MainWindow();
 
 private:
+    void SetupQuiz();
+
     void SetupMsgBoxes();
     void SetupSetuper();
 
@@ -32,6 +35,9 @@ private:
     void ForgiveMistake();
 
 private:
+    QPushButton* TEST_quiz_btn;
+    Quiz* TEST_quiz;
+
     GameEndMsgBox* loose_game_msgbox;
     GameEndMsgBox* win_game_msgbox;
 
