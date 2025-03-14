@@ -1,0 +1,1938 @@
+<jap_kanji_n5>
+    <kanji id="0">
+        <character>人</character>
+        <definition>person, human</definition>
+        <examples>
+            <example>
+                <word>日本人</word>
+                <reading>にほんじん</reading>
+                <definition>Japanese person</definition>
+            </example>
+            <example>
+                <word>人口</word>
+                <reading>じんこう</reading>
+                <definition>population</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="1">
+        <character>日</character>
+        <definition>day, sun</definition>
+        <examples>
+            <example>
+                <word>日曜日</word>
+                <reading>にちようび</reading>
+                <definition>Sunday</definition>
+            </example>
+            <example>
+                <word>毎日</word>
+                <reading>まいにち</reading>
+                <definition>every day</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="2">
+        <character>月</character>
+        <definition>month, moon</definition>
+        <examples>
+            <example>
+                <word>月曜日</word>
+                <reading>げつようび</reading>
+                <definition>Monday</definition>
+            </example>
+            <example>
+                <word>今月</word>
+                <reading>こんげつ</reading>
+                <definition>this month</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="3">
+        <character>水</character>
+        <definition>water</definition>
+        <examples>
+            <example>
+                <word>水曜日</word>
+                <reading>すいようび</reading>
+                <definition>Wednesday</definition>
+            </example>
+            <example>
+                <word>水泳</word>
+                <reading>すいえい</reading>
+                <definition>swimming</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="4">
+        <character>火</character>
+        <definition>fire</definition>
+        <examples>
+            <example>
+                <word>火曜日</word>
+                <reading>かようび</reading>
+                <definition>Tuesday</definition>
+            </example>
+            <example>
+                <word>火事</word>
+                <reading>かじ</reading>
+                <definition>fire (as in a disaster)</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="5">
+        <character>木</character>
+        <definition>tree, wood</definition>
+        <examples>
+            <example>
+                <word>木曜日</word>
+                <reading>もくようび</reading>
+                <definition>Thursday</definition>
+            </example>
+            <example>
+                <word>木</word>
+                <reading>き</reading>
+                <definition>tree</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="6">
+        <character>金</character>
+        <definition>gold, money</definition>
+        <examples>
+            <example>
+                <word>金曜日</word>
+                <reading>きんようび</reading>
+                <definition>Friday</definition>
+            </example>
+            <example>
+                <word>お金</word>
+                <reading>おかね</reading>
+                <definition>money</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="7">
+        <character>土</character>
+        <definition>soil, earth</definition>
+        <examples>
+            <example>
+                <word>土曜日</word>
+                <reading>どようび</reading>
+                <definition>Saturday</definition>
+            </example>
+            <example>
+                <word>土</word>
+                <reading>つち</reading>
+                <definition>soil</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="8">
+        <character>山</character>
+        <definition>mountain</definition>
+        <examples>
+            <example>
+                <word>山</word>
+                <reading>やま</reading>
+                <definition>mountain</definition>
+            </example>
+            <example>
+                <word>火山</word>
+                <reading>かざん</reading>
+                <definition>volcano</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="9">
+        <character>川</character>
+        <definition>river</definition>
+        <examples>
+            <example>
+                <word>川</word>
+                <reading>かわ</reading>
+                <definition>river</definition>
+            </example>
+            <example>
+                <word>小川</word>
+                <reading>おがわ</reading>
+                <definition>stream</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="10">
+        <character>天</character>
+        <definition>heaven, sky</definition>
+        <examples>
+            <example>
+                <word>天気</word>
+                <reading>てんき</reading>
+                <definition>weather</definition>
+            </example>
+            <example>
+                <word>天</word>
+                <reading>てん</reading>
+                <definition>heaven</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="11">
+        <character>田</character>
+        <definition>rice field</definition>
+        <examples>
+            <example>
+                <word>田</word>
+                <reading>た</reading>
+                <definition>rice field</definition>
+            </example>
+            <example>
+                <word>田舎</word>
+                <reading>いなか</reading>
+                <definition>countryside</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="12">
+        <character>男</character>
+        <definition>man, male</definition>
+        <examples>
+            <example>
+                <word>男</word>
+                <reading>おとこ</reading>
+                <definition>man</definition>
+            </example>
+            <example>
+                <word>男子</word>
+                <reading>だんし</reading>
+                <definition>boy</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="13">
+        <character>女</character>
+        <definition>woman, female</definition>
+        <examples>
+            <example>
+                <word>女</word>
+                <reading>おんな</reading>
+                <definition>woman</definition>
+            </example>
+            <example>
+                <word>女子</word>
+                <reading>じょし</reading>
+                <definition>girl</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="14">
+        <character>子</character>
+        <definition>child</definition>
+        <examples>
+            <example>
+                <word>子供</word>
+                <reading>こども</reading>
+                <definition>child</definition>
+            </example>
+            <example>
+                <word>女子</word>
+                <reading>じょし</reading>
+                <definition>girl</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="15">
+        <character>学</character>
+        <definition>study, learning</definition>
+        <examples>
+            <example>
+                <word>学生</word>
+                <reading>がくせい</reading>
+                <definition>student</definition>
+            </example>
+            <example>
+                <word>学校</word>
+                <reading>がっこう</reading>
+                <definition>school</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="16">
+        <character>生</character>
+        <definition>life, birth</definition>
+        <examples>
+            <example>
+                <word>学生</word>
+                <reading>がくせい</reading>
+                <definition>student</definition>
+            </example>
+            <example>
+                <word>生活</word>
+                <reading>せいかつ</reading>
+                <definition>life, lifestyle</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="17">
+        <character>先</character>
+        <definition>ahead, previous</definition>
+        <examples>
+            <example>
+                <word>先生</word>
+                <reading>せんせい</reading>
+                <definition>teacher</definition>
+            </example>
+            <example>
+                <word>先月</word>
+                <reading>せんげつ</reading>
+                <definition>last month</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="18">
+        <character>年</character>
+        <definition>year</definition>
+        <examples>
+            <example>
+                <word>今年</word>
+                <reading>ことし</reading>
+                <definition>this year</definition>
+            </example>
+            <example>
+                <word>一年</word>
+                <reading>いちねん</reading>
+                <definition>one year</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="19">
+        <character>気</character>
+        <definition>spirit, energy</definition>
+        <examples>
+            <example>
+                <word>天気</word>
+                <reading>てんき</reading>
+                <definition>weather</definition>
+            </example>
+            <example>
+                <word>元気</word>
+                <reading>げんき</reading>
+                <definition>healthy, energetic</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="20">
+        <character>休</character>
+        <definition>rest, vacation</definition>
+        <examples>
+            <example>
+                <word>休み</word>
+                <reading>やすみ</reading>
+                <definition>rest, break</definition>
+            </example>
+            <example>
+                <word>休日</word>
+                <reading>きゅうじつ</reading>
+                <definition>holiday</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="21">
+        <character>食</character>
+        <definition>eat, food</definition>
+        <examples>
+            <example>
+                <word>食べ物</word>
+                <reading>たべもの</reading>
+                <definition>food</definition>
+            </example>
+            <example>
+                <word>食事</word>
+                <reading>しょくじ</reading>
+                <definition>meal</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="22">
+        <character>飲</character>
+        <definition>drink</definition>
+        <examples>
+            <example>
+                <word>飲み物</word>
+                <reading>のみもの</reading>
+                <definition>drink, beverage</definition>
+            </example>
+            <example>
+                <word>飲む</word>
+                <reading>のむ</reading>
+                <definition>to drink</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="23">
+        <character>行</character>
+        <definition>go, conduct</definition>
+        <examples>
+            <example>
+                <word>行く</word>
+                <reading>いく</reading>
+                <definition>to go</definition>
+            </example>
+            <example>
+                <word>旅行</word>
+                <reading>りょこう</reading>
+                <definition>travel</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="24">
+        <character>来</character>
+        <definition>come</definition>
+        <examples>
+            <example>
+                <word>来る</word>
+                <reading>くる</reading>
+                <definition>to come</definition>
+            </example>
+            <example>
+                <word>来年</word>
+                <reading>らいねん</reading>
+                <definition>next year</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="25">
+        <character>見</character>
+        <definition>see, look</definition>
+        <examples>
+            <example>
+                <word>見る</word>
+                <reading>みる</reading>
+                <definition>to see, to watch</definition>
+            </example>
+            <example>
+                <word>見物</word>
+                <reading>けんぶつ</reading>
+                <definition>sightseeing</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="26">
+        <character>聞</character>
+        <definition>hear, listen</definition>
+        <examples>
+            <example>
+                <word>聞く</word>
+                <reading>きく</reading>
+                <definition>to hear, to listen</definition>
+            </example>
+            <example>
+                <word>新聞</word>
+                <reading>しんぶん</reading>
+                <definition>newspaper</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="27">
+        <character>書</character>
+        <definition>write</definition>
+        <examples>
+            <example>
+                <word>書く</word>
+                <reading>かく</reading>
+                <definition>to write</definition>
+            </example>
+            <example>
+                <word>辞書</word>
+                <reading>じしょ</reading>
+                <definition>dictionary</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="28">
+        <character>読</character>
+        <definition>read</definition>
+        <examples>
+            <example>
+                <word>読む</word>
+                <reading>よむ</reading>
+                <definition>to read</definition>
+            </example>
+            <example>
+                <word>読書</word>
+                <reading>どくしょ</reading>
+                <definition>reading</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="29">
+        <character>話</character>
+        <definition>talk, story</definition>
+        <examples>
+            <example>
+                <word>話す</word>
+                <reading>はなす</reading>
+                <definition>to speak</definition>
+            </example>
+            <example>
+                <word>会話</word>
+                <reading>かいわ</reading>
+                <definition>conversation</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="30">
+        <character>語</character>
+        <definition>language, word</definition>
+        <examples>
+            <example>
+                <word>日本語</word>
+                <reading>にほんご</reading>
+                <definition>Japanese language</definition>
+            </example>
+            <example>
+                <word>英語</word>
+                <reading>えいご</reading>
+                <definition>English language</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="31">
+        <character>友</character>
+        <definition>friend</definition>
+        <examples>
+            <example>
+                <word>友達</word>
+                <reading>ともだち</reading>
+                <definition>friend</definition>
+            </example>
+            <example>
+                <word>友人</word>
+                <reading>ゆうじん</reading>
+                <definition>friend</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="32">
+        <character>親</character>
+        <definition>parent</definition>
+        <examples>
+            <example>
+                <word>親</word>
+                <reading>おや</reading>
+                <definition>parent</definition>
+            </example>
+            <example>
+                <word>親切</word>
+                <reading>しんせつ</reading>
+                <definition>kindness</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="33">
+        <character>父</character>
+        <definition>father</definition>
+        <examples>
+            <example>
+                <word>父</word>
+                <reading>ちち</reading>
+                <definition>father</definition>
+            </example>
+            <example>
+                <word>父親</word>
+                <reading>ちちおや</reading>
+                <definition>father</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="34">
+        <character>母</character>
+        <definition>mother</definition>
+        <examples>
+            <example>
+                <word>母</word>
+                <reading>はは</reading>
+                <definition>mother</definition>
+            </example>
+            <example>
+                <word>母親</word>
+                <reading>ははおや</reading>
+                <definition>mother</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="35">
+        <character>兄</character>
+        <definition>older brother</definition>
+        <examples>
+            <example>
+                <word>兄</word>
+                <reading>あに</reading>
+                <definition>older brother</definition>
+            </example>
+            <example>
+                <word>兄弟</word>
+                <reading>きょうだい</reading>
+                <definition>siblings</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="36">
+        <character>弟</character>
+        <definition>younger brother</definition>
+        <examples>
+            <example>
+                <word>弟</word>
+                <reading>おとうと</reading>
+                <definition>younger brother</definition>
+            </example>
+            <example>
+                <word>弟妹</word>
+                <reading>ていまい</reading>
+                <definition>younger siblings</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="37">
+        <character>姉</character>
+        <definition>older sister</definition>
+        <examples>
+            <example>
+                <word>姉</word>
+                <reading>あね</reading>
+                <definition>older sister</definition>
+            </example>
+            <example>
+                <word>姉妹</word>
+                <reading>しまい</reading>
+                <definition>sisters</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="38">
+        <character>妹</character>
+        <definition>younger sister</definition>
+        <examples>
+            <example>
+                <word>妹</word>
+                <reading>いもうと</reading>
+                <definition>younger sister</definition>
+            </example>
+            <example>
+                <word>妹弟</word>
+                <reading>まいてい</reading>
+                <definition>younger siblings</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="39">
+        <character>家</character>
+        <definition>house, home</definition>
+        <examples>
+            <example>
+                <word>家</word>
+                <reading>いえ</reading>
+                <definition>house</definition>
+            </example>
+            <example>
+                <word>家族</word>
+                <reading>かぞく</reading>
+                <definition>family</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="40">
+        <character>室</character>
+        <definition>room</definition>
+        <examples>
+            <example>
+                <word>教室</word>
+                <reading>きょうしつ</reading>
+                <definition>classroom</definition>
+            </example>
+            <example>
+                <word>寝室</word>
+                <reading>しんしつ</reading>
+                <definition>bedroom</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="41">
+        <character>校</character>
+        <definition>school</definition>
+        <examples>
+            <example>
+                <word>学校</word>
+                <reading>がっこう</reading>
+                <definition>school</definition>
+            </example>
+            <example>
+                <word>校長</word>
+                <reading>こうちょう</reading>
+                <definition>principal</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="42">
+        <character>園</character>
+        <definition>garden, park</definition>
+        <examples>
+            <example>
+                <word>公園</word>
+                <reading>こうえん</reading>
+                <definition>park</definition>
+            </example>
+            <example>
+                <word>幼稚園</word>
+                <reading>ようちえん</reading>
+                <definition>kindergarten</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="43">
+        <character>町</character>
+        <definition>town</definition>
+        <examples>
+            <example>
+                <word>町</word>
+                <reading>まち</reading>
+                <definition>town</definition>
+            </example>
+            <example>
+                <word>市町村</word>
+                <reading>しちょうそん</reading>
+                <definition>municipalities</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="44">
+        <character>市</character>
+        <definition>city, market</definition>
+        <examples>
+            <example>
+                <word>市</word>
+                <reading>し</reading>
+                <definition>city</definition>
+            </example>
+            <example>
+                <word>市場</word>
+                <reading>いちば</reading>
+                <definition>market</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="45">
+        <character>村</character>
+        <definition>village</definition>
+        <examples>
+            <example>
+                <word>村</word>
+                <reading>むら</reading>
+                <definition>village</definition>
+            </example>
+            <example>
+                <word>農村</word>
+                <reading>のうそん</reading>
+                <definition>rural village</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="46">
+        <character>社</character>
+        <definition>company, shrine</definition>
+        <examples>
+            <example>
+                <word>会社</word>
+                <reading>かいしゃ</reading>
+                <definition>company</definition>
+            </example>
+            <example>
+                <word>神社</word>
+                <reading>じんじゃ</reading>
+                <definition>shrine</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="47">
+        <character>会</character>
+        <definition>meeting, association</definition>
+        <examples>
+            <example>
+                <word>会社</word>
+                <reading>かいしゃ</reading>
+                <definition>company</definition>
+            </example>
+            <example>
+                <word>会議</word>
+                <reading>かいぎ</reading>
+                <definition>meeting</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="48">
+        <character>店</character>
+        <definition>shop, store</definition>
+        <examples>
+            <example>
+                <word>店</word>
+                <reading>みせ</reading>
+                <definition>shop</definition>
+            </example>
+            <example>
+                <word>書店</word>
+                <reading>しょてん</reading>
+                <definition>bookstore</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="49">
+        <character>駅</character>
+        <definition>station</definition>
+        <examples>
+            <example>
+                <word>駅</word>
+                <reading>えき</reading>
+                <definition>station</definition>
+            </example>
+            <example>
+                <word>駅前</word>
+                <reading>えきまえ</reading>
+                <definition>in front of the station</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="50">
+        <character>道</character>
+        <definition>road, path</definition>
+        <examples>
+            <example>
+                <word>道</word>
+                <reading>みち</reading>
+                <definition>road</definition>
+            </example>
+            <example>
+                <word>道路</word>
+                <reading>どうろ</reading>
+                <definition>road, highway</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="51">
+        <character>車</character>
+        <definition>car, vehicle</definition>
+        <examples>
+            <example>
+                <word>車</word>
+                <reading>くるま</reading>
+                <definition>car</definition>
+            </example>
+            <example>
+                <word>電車</word>
+                <reading>でんしゃ</reading>
+                <definition>train</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="52">
+        <character>電</character>
+        <definition>electricity</definition>
+        <examples>
+            <example>
+                <word>電気</word>
+                <reading>でんき</reading>
+                <definition>electricity</definition>
+            </example>
+            <example>
+                <word>電車</word>
+                <reading>でんしゃ</reading>
+                <definition>train</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="53">
+        <character>話</character>
+        <definition>talk, story</definition>
+        <examples>
+            <example>
+                <word>話す</word>
+                <reading>はなす</reading>
+                <definition>to speak</definition>
+            </example>
+            <example>
+                <word>会話</word>
+                <reading>かいわ</reading>
+                <definition>conversation</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="54">
+        <character>語</character>
+        <definition>language, word</definition>
+        <examples>
+            <example>
+                <word>日本語</word>
+                <reading>にほんご</reading>
+                <definition>Japanese language</definition>
+            </example>
+            <example>
+                <word>英語</word>
+                <reading>えいご</reading>
+                <definition>English language</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="55">
+        <character>文</character>
+        <definition>sentence, writing</definition>
+        <examples>
+            <example>
+                <word>作文</word>
+                <reading>さくぶん</reading>
+                <definition>essay</definition>
+            </example>
+            <example>
+                <word>文化</word>
+                <reading>ぶんか</reading>
+                <definition>culture</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="56">
+        <character>字</character>
+        <definition>character, letter</definition>
+        <examples>
+            <example>
+                <word>漢字</word>
+                <reading>かんじ</reading>
+                <definition>kanji</definition>
+            </example>
+            <example>
+                <word>文字</word>
+                <reading>もじ</reading>
+                <definition>letter, character</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="57">
+        <character>本</character>
+        <definition>book, origin</definition>
+        <examples>
+            <example>
+                <word>本</word>
+                <reading>ほん</reading>
+                <definition>book</definition>
+            </example>
+            <example>
+                <word>日本</word>
+                <reading>にほん</reading>
+                <definition>Japan</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="58">
+        <character>毎</character>
+        <definition>every</definition>
+        <examples>
+            <example>
+                <word>毎日</word>
+                <reading>まいにち</reading>
+                <definition>every day</definition>
+            </example>
+            <example>
+                <word>毎週</word>
+                <reading>まいしゅう</reading>
+                <definition>every week</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="59">
+        <character>時</character>
+        <definition>time, hour</definition>
+        <examples>
+            <example>
+                <word>時間</word>
+                <reading>じかん</reading>
+                <definition>time</definition>
+            </example>
+            <example>
+                <word>時計</word>
+                <reading>とけい</reading>
+                <definition>clock</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="60">
+        <character>分</character>
+        <definition>minute, understand</definition>
+        <examples>
+            <example>
+                <word>分</word>
+                <reading>ふん</reading>
+                <definition>minute</definition>
+            </example>
+            <example>
+                <word>分かる</word>
+                <reading>わかる</reading>
+                <definition>to understand</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="61">
+        <character>間</character>
+        <definition>interval, space</definition>
+        <examples>
+            <example>
+                <word>時間</word>
+                <reading>じかん</reading>
+                <definition>time</definition>
+            </example>
+            <example>
+                <word>人間</word>
+                <reading>にんげん</reading>
+                <definition>human</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="62">
+        <character>週</character>
+        <definition>week</definition>
+        <examples>
+            <example>
+                <word>週</word>
+                <reading>しゅう</reading>
+                <definition>week</definition>
+            </example>
+            <example>
+                <word>毎週</word>
+                <reading>まいしゅう</reading>
+                <definition>every week</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="63">
+        <character>午</character>
+        <definition>noon</definition>
+        <examples>
+            <example>
+                <word>午前</word>
+                <reading>ごぜん</reading>
+                <definition>morning</definition>
+            </example>
+            <example>
+                <word>午後</word>
+                <reading>ごご</reading>
+                <definition>afternoon</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="64">
+        <character>前</character>
+        <definition>front, before</definition>
+        <examples>
+            <example>
+                <word>前</word>
+                <reading>まえ</reading>
+                <definition>front</definition>
+            </example>
+            <example>
+                <word>名前</word>
+                <reading>なまえ</reading>
+                <definition>name</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="65">
+        <character>後</character>
+        <definition>after, behind</definition>
+        <examples>
+            <example>
+                <word>後</word>
+                <reading>あと</reading>
+                <definition>after</definition>
+            </example>
+            <example>
+                <word>午後</word>
+                <reading>ごご</reading>
+                <definition>afternoon</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="66">
+        <character>今</character>
+        <definition>now</definition>
+        <examples>
+            <example>
+                <word>今</word>
+                <reading>いま</reading>
+                <definition>now</definition>
+            </example>
+            <example>
+                <word>今日</word>
+                <reading>きょう</reading>
+                <definition>today</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="67">
+        <character>先</character>
+        <definition>ahead, previous</definition>
+        <examples>
+            <example>
+                <word>先週</word>
+                <reading>せんしゅう</reading>
+                <definition>last week</definition>
+            </example>
+            <example>
+                <word>先生</word>
+                <reading>せんせい</reading>
+                <definition>teacher</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="68">
+        <character>来</character>
+        <definition>come</definition>
+        <examples>
+            <example>
+                <word>来る</word>
+                <reading>くる</reading>
+                <definition>to come</definition>
+            </example>
+            <example>
+                <word>来年</word>
+                <reading>らいねん</reading>
+                <definition>next year</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="69">
+        <character>年</character>
+        <definition>year</definition>
+        <examples>
+            <example>
+                <word>今年</word>
+                <reading>ことし</reading>
+                <definition>this year</definition>
+            </example>
+            <example>
+                <word>一年</word>
+                <reading>いちねん</reading>
+                <definition>one year</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="70">
+        <character>去</character>
+        <definition>past, leave</definition>
+        <examples>
+            <example>
+                <word>去年</word>
+                <reading>きょねん</reading>
+                <definition>last year</definition>
+            </example>
+            <example>
+                <word>過去</word>
+                <reading>かこ</reading>
+                <definition>past</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="71">
+        <character>明</character>
+        <definition>bright, clear</definition>
+        <examples>
+            <example>
+                <word>明日</word>
+                <reading>あした</reading>
+                <definition>tomorrow</definition>
+            </example>
+            <example>
+                <word>明るい</word>
+                <reading>あかるい</reading>
+                <definition>bright</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="72">
+        <character>半</character>
+        <definition>half</definition>
+        <examples>
+            <example>
+                <word>半分</word>
+                <reading>はんぶん</reading>
+                <definition>half</definition>
+            </example>
+            <example>
+                <word>半日</word>
+                <reading>はんにち</reading>
+                <definition>half a day</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="73">
+        <character>分</character>
+        <definition>minute, understand</definition>
+        <examples>
+            <example>
+                <word>分</word>
+                <reading>ふん</reading>
+                <definition>minute</definition>
+            </example>
+            <example>
+                <word>分かる</word>
+                <reading>わかる</reading>
+                <definition>to understand</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="74">
+        <character>時</character>
+        <definition>time, hour</definition>
+        <examples>
+            <example>
+                <word>時間</word>
+                <reading>じかん</reading>
+                <definition>time</definition>
+            </example>
+            <example>
+                <word>時計</word>
+                <reading>とけい</reading>
+                <definition>clock</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="75">
+        <character>間</character>
+        <definition>interval, space</definition>
+        <examples>
+            <example>
+                <word>時間</word>
+                <reading>じかん</reading>
+                <definition>time</definition>
+            </example>
+            <example>
+                <word>人間</word>
+                <reading>にんげん</reading>
+                <definition>human</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="76">
+        <character>週</character>
+        <definition>week</definition>
+        <examples>
+            <example>
+                <word>週</word>
+                <reading>しゅう</reading>
+                <definition>week</definition>
+            </example>
+            <example>
+                <word>毎週</word>
+                <reading>まいしゅう</reading>
+                <definition>every week</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="77">
+        <character>午</character>
+        <definition>noon</definition>
+        <examples>
+            <example>
+                <word>午前</word>
+                <reading>ごぜん</reading>
+                <definition>morning</definition>
+            </example>
+            <example>
+                <word>午後</word>
+                <reading>ごご</reading>
+                <definition>afternoon</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="78">
+        <character>前</character>
+        <definition>front, before</definition>
+        <examples>
+            <example>
+                <word>前</word>
+                <reading>まえ</reading>
+                <definition>front</definition>
+            </example>
+            <example>
+                <word>名前</word>
+                <reading>なまえ</reading>
+                <definition>name</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="79">
+        <character>後</character>
+        <definition>after, behind</definition>
+        <examples>
+            <example>
+                <word>後</word>
+                <reading>あと</reading>
+                <definition>after</definition>
+            </example>
+            <example>
+                <word>午後</word>
+                <reading>ごご</reading>
+                <definition>afternoon</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="80">
+        <character>今</character>
+        <definition>now</definition>
+        <examples>
+            <example>
+                <word>今</word>
+                <reading>いま</reading>
+                <definition>now</definition>
+            </example>
+            <example>
+                <word>今日</word>
+                <reading>きょう</reading>
+                <definition>today</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="81">
+        <character>新</character>
+        <definition>new</definition>
+        <examples>
+            <example>
+                <word>新しい</word>
+                <reading>あたらしい</reading>
+                <definition>new</definition>
+            </example>
+            <example>
+                <word>新聞</word>
+                <reading>しんぶん</reading>
+                <definition>newspaper</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="82">
+        <character>古</character>
+        <definition>old</definition>
+        <examples>
+            <example>
+                <word>古い</word>
+                <reading>ふるい</reading>
+                <definition>old</definition>
+            </example>
+            <example>
+                <word>古代</word>
+                <reading>こだい</reading>
+                <definition>ancient times</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="83">
+        <character>高</character>
+        <definition>high, expensive</definition>
+        <examples>
+            <example>
+                <word>高い</word>
+                <reading>たかい</reading>
+                <definition>high, expensive</definition>
+            </example>
+            <example>
+                <word>高校</word>
+                <reading>こうこう</reading>
+                <definition>high school</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="84">
+        <character>安</character>
+        <definition>cheap, safe</definition>
+        <examples>
+            <example>
+                <word>安い</word>
+                <reading>やすい</reading>
+                <definition>cheap</definition>
+            </example>
+            <example>
+                <word>安全</word>
+                <reading>あんぜん</reading>
+                <definition>safety</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="85">
+        <character>多</character>
+        <definition>many, much</definition>
+        <examples>
+            <example>
+                <word>多い</word>
+                <reading>おおい</reading>
+                <definition>many</definition>
+            </example>
+            <example>
+                <word>多分</word>
+                <reading>たぶん</reading>
+                <definition>probably</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="86">
+        <character>少</character>
+        <definition>few, little</definition>
+        <examples>
+            <example>
+                <word>少ない</word>
+                <reading>すくない</reading>
+                <definition>few, little</definition>
+            </example>
+            <example>
+                <word>少年</word>
+                <reading>しょうねん</reading>
+                <definition>boy</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="87">
+        <character>長</character>
+        <definition>long, leader</definition>
+        <examples>
+            <example>
+                <word>長い</word>
+                <reading>ながい</reading>
+                <definition>long</definition>
+            </example>
+            <example>
+                <word>校長</word>
+                <reading>こうちょう</reading>
+                <definition>principal</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="88">
+        <character>短</character>
+        <definition>short</definition>
+        <examples>
+            <example>
+                <word>短い</word>
+                <reading>みじかい</reading>
+                <definition>short</definition>
+            </example>
+            <example>
+                <word>短期</word>
+                <reading>たんき</reading>
+                <definition>short term</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="89">
+        <character>大</character>
+        <definition>big, large</definition>
+        <examples>
+            <example>
+                <word>大きい</word>
+                <reading>おおきい</reading>
+                <definition>big</definition>
+            </example>
+            <example>
+                <word>大学</word>
+                <reading>だいがく</reading>
+                <definition>university</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="90">
+        <character>小</character>
+        <definition>small</definition>
+        <examples>
+            <example>
+                <word>小さい</word>
+                <reading>ちいさい</reading>
+                <definition>small</definition>
+            </example>
+            <example>
+                <word>小学校</word>
+                <reading>しょうがっこう</reading>
+                <definition>elementary school</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="91">
+        <character>中</character>
+        <definition>middle, inside</definition>
+        <examples>
+            <example>
+                <word>中</word>
+                <reading>なか</reading>
+                <definition>inside</definition>
+            </example>
+            <example>
+                <word>中国</word>
+                <reading>ちゅうごく</reading>
+                <definition>China</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="92">
+        <character>外</character>
+        <definition>outside</definition>
+        <examples>
+            <example>
+                <word>外</word>
+                <reading>そと</reading>
+                <definition>outside</definition>
+            </example>
+            <example>
+                <word>外国</word>
+                <reading>がいこく</reading>
+                <definition>foreign country</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="93">
+        <character>右</character>
+        <definition>right</definition>
+        <examples>
+            <example>
+                <word>右</word>
+                <reading>みぎ</reading>
+                <definition>right</definition>
+            </example>
+            <example>
+                <word>左右</word>
+                <reading>さゆう</reading>
+                <definition>left and right</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="94">
+        <character>左</character>
+        <definition>left</definition>
+        <examples>
+            <example>
+                <word>左</word>
+                <reading>ひだり</reading>
+                <definition>left</definition>
+            </example>
+            <example>
+                <word>左右</word>
+                <reading>さゆう</reading>
+                <definition>left and right</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="95">
+        <character>北</character>
+        <definition>north</definition>
+        <examples>
+            <example>
+                <word>北</word>
+                <reading>きた</reading>
+                <definition>north</definition>
+            </example>
+            <example>
+                <word>北海道</word>
+                <reading>ほっかいどう</reading>
+                <definition>Hokkaido</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="96">
+        <character>南</character>
+        <definition>south</definition>
+        <examples>
+            <example>
+                <word>南</word>
+                <reading>みなみ</reading>
+                <definition>south</definition>
+            </example>
+            <example>
+                <word>南米</word>
+                <reading>なんべい</reading>
+                <definition>South America</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="97">
+        <character>東</character>
+        <definition>east</definition>
+        <examples>
+            <example>
+                <word>東</word>
+                <reading>ひがし</reading>
+                <definition>east</definition>
+            </example>
+            <example>
+                <word>東京</word>
+                <reading>とうきょう</reading>
+                <definition>Tokyo</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="98">
+        <character>西</character>
+        <definition>west</definition>
+        <examples>
+            <example>
+                <word>西</word>
+                <reading>にし</reading>
+                <definition>west</definition>
+            </example>
+            <example>
+                <word>西洋</word>
+                <reading>せいよう</reading>
+                <definition>the West (as in Western countries)</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="99">
+        <character>口</character>
+        <definition>mouth</definition>
+        <examples>
+            <example>
+                <word>口</word>
+                <reading>くち</reading>
+                <definition>mouth</definition>
+            </example>
+            <example>
+                <word>入口</word>
+                <reading>いりぐち</reading>
+                <definition>entrance</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="100">
+        <character>目</character>
+        <definition>eye</definition>
+        <examples>
+            <example>
+                <word>目</word>
+                <reading>め</reading>
+                <definition>eye</definition>
+            </example>
+            <example>
+                <word>目的</word>
+                <reading>もくてき</reading>
+                <definition>purpose</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="101">
+        <character>耳</character>
+        <definition>ear</definition>
+        <examples>
+            <example>
+                <word>耳</word>
+                <reading>みみ</reading>
+                <definition>ear</definition>
+            </example>
+            <example>
+                <word>耳鼻科</word>
+                <reading>じびか</reading>
+                <definition>ear, nose, and throat clinic</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="102">
+        <character>手</character>
+        <definition>hand</definition>
+        <examples>
+            <example>
+                <word>手</word>
+                <reading>て</reading>
+                <definition>hand</definition>
+            </example>
+            <example>
+                <word>手紙</word>
+                <reading>てがみ</reading>
+                <definition>letter</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="103">
+        <character>足</character>
+        <definition>foot, leg</definition>
+        <examples>
+            <example>
+                <word>足</word>
+                <reading>あし</reading>
+                <definition>foot, leg</definition>
+            </example>
+            <example>
+                <word>足音</word>
+                <reading>あしおと</reading>
+                <definition>sound of footsteps</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="104">
+        <character>体</character>
+        <definition>body</definition>
+        <examples>
+            <example>
+                <word>体</word>
+                <reading>からだ</reading>
+                <definition>body</definition>
+            </example>
+            <example>
+                <word>体力</word>
+                <reading>たいりょく</reading>
+                <definition>physical strength</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="105">
+        <character>力</character>
+        <definition>power, strength</definition>
+        <examples>
+            <example>
+                <word>力</word>
+                <reading>ちから</reading>
+                <definition>strength</definition>
+            </example>
+            <example>
+                <word>努力</word>
+                <reading>どりょく</reading>
+                <definition>effort</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="106">
+        <character>気</character>
+        <definition>spirit, energy</definition>
+        <examples>
+            <example>
+                <word>気</word>
+                <reading>き</reading>
+                <definition>spirit, mood</definition>
+            </example>
+            <example>
+                <word>天気</word>
+                <reading>てんき</reading>
+                <definition>weather</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="107">
+        <character>心</character>
+        <definition>heart, mind</definition>
+        <examples>
+            <example>
+                <word>心</word>
+                <reading>こころ</reading>
+                <definition>heart, mind</definition>
+            </example>
+            <example>
+                <word>安心</word>
+                <reading>あんしん</reading>
+                <definition>peace of mind</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="108">
+        <character>名</character>
+        <definition>name</definition>
+        <examples>
+            <example>
+                <word>名前</word>
+                <reading>なまえ</reading>
+                <definition>name</definition>
+            </example>
+            <example>
+                <word>有名</word>
+                <reading>ゆうめい</reading>
+                <definition>famous</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="109">
+        <character>字</character>
+        <definition>character, letter</definition>
+        <examples>
+            <example>
+                <word>漢字</word>
+                <reading>かんじ</reading>
+                <definition>kanji</definition>
+            </example>
+            <example>
+                <word>文字</word>
+                <reading>もじ</reading>
+                <definition>letter, character</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="110">
+        <character>文</character>
+        <definition>sentence, writing</definition>
+        <examples>
+            <example>
+                <word>作文</word>
+                <reading>さくぶん</reading>
+                <definition>essay</definition>
+            </example>
+            <example>
+                <word>文化</word>
+                <reading>ぶんか</reading>
+                <definition>culture</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="111">
+        <character>方</character>
+        <definition>direction, person</definition>
+        <examples>
+            <example>
+                <word>方</word>
+                <reading>ほう</reading>
+                <definition>direction</definition>
+            </example>
+            <example>
+                <word>方向</word>
+                <reading>ほうこう</reading>
+                <definition>direction</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="112">
+        <character>国</character>
+        <definition>country</definition>
+        <examples>
+            <example>
+                <word>国</word>
+                <reading>くに</reading>
+                <definition>country</definition>
+            </example>
+            <example>
+                <word>外国</word>
+                <reading>がいこく</reading>
+                <definition>foreign country</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="113">
+        <character>町</character>
+        <definition>town</definition>
+        <examples>
+            <example>
+                <word>町</word>
+                <reading>まち</reading>
+                <definition>town</definition>
+            </example>
+            <example>
+                <word>市町村</word>
+                <reading>しちょうそん</reading>
+                <definition>municipalities</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="114">
+        <character>市</character>
+        <definition>city, market</definition>
+        <examples>
+            <example>
+                <word>市</word>
+                <reading>し</reading>
+                <definition>city</definition>
+            </example>
+            <example>
+                <word>市場</word>
+                <reading>いちば</reading>
+                <definition>market</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="115">
+        <character>村</character>
+        <definition>village</definition>
+        <examples>
+            <example>
+                <word>村</word>
+                <reading>むら</reading>
+                <definition>village</definition>
+            </example>
+            <example>
+                <word>農村</word>
+                <reading>のうそん</reading>
+                <definition>rural village</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="116">
+        <character>社</character>
+        <definition>company, shrine</definition>
+        <examples>
+            <example>
+                <word>会社</word>
+                <reading>かいしゃ</reading>
+                <definition>company</definition>
+            </example>
+            <example>
+                <word>神社</word>
+                <reading>じんじゃ</reading>
+                <definition>shrine</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="117">
+        <character>会</character>
+        <definition>meeting, association</definition>
+        <examples>
+            <example>
+                <word>会社</word>
+                <reading>かいしゃ</reading>
+                <definition>company</definition>
+            </example>
+            <example>
+                <word>会議</word>
+                <reading>かいぎ</reading>
+                <definition>meeting</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="118">
+        <character>店</character>
+        <definition>shop, store</definition>
+        <examples>
+            <example>
+                <word>店</word>
+                <reading>みせ</reading>
+                <definition>shop</definition>
+            </example>
+            <example>
+                <word>書店</word>
+                <reading>しょてん</reading>
+                <definition>bookstore</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="119">
+        <character>駅</character>
+        <definition>station</definition>
+        <examples>
+            <example>
+                <word>駅</word>
+                <reading>えき</reading>
+                <definition>station</definition>
+            </example>
+            <example>
+                <word>駅前</word>
+                <reading>えきまえ</reading>
+                <definition>in front of the station</definition>
+            </example>
+        </examples>
+    </kanji>
+    <kanji id="120">
+        <character>道</character>
+        <definition>road, path</definition>
+        <examples>
+            <example>
+                <word>道</word>
+                <reading>みち</reading>
+                <definition>road</definition>
+            </example>
+            <example>
+                <word>道路</word>
+                <reading>どうろ</reading>
+                <definition>road, highway</definition>
+            </example>
+        </examples>
+    </kanji>
+</kanji_database>
