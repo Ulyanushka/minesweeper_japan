@@ -19,6 +19,7 @@ set(PROJECT_SOURCES
         minesweeper/stat_data.h minesweeper/stat_data.cpp
         minesweeper/field_data.h minesweeper/field_data.cpp
         minesweeper/field_view.h minesweeper/field_view.cpp
+        quiz/quiz.h quiz/quiz.cpp
         trash/cells_model.h trash/cells_model.cpp
 )
 

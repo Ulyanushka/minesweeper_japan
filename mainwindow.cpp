@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     SetupMsgBoxes();
     SetupSetuper();
 
-    QGridLayout* ui_lay = new QGridLayout();
+    QGridLayout* ui_lay = new QGridLayout(this);
     ui_lay->setHorizontalSpacing(10);
     ui_lay->setVerticalSpacing(5);
 
@@ -19,12 +19,12 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     ui_lay->addWidget(reset_btn, 1, 1, Qt::AlignLeft);
     ui_lay->addWidget(setuper_btn, 2, 1, Qt::AlignLeft);
 
-    QVBoxLayout* main_lay = new QVBoxLayout();
+    QVBoxLayout* main_lay = new QVBoxLayout(this);
     main_lay->addLayout(ui_lay);
     SetupField();
     main_lay->addWidget(field, 0, Qt::AlignHCenter);
 
-    QWidget* w = new QWidget();
+    QWidget* w = new QWidget(this);
     w->setLayout(main_lay);
     setCentralWidget(w);
 
@@ -34,47 +34,47 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 
 void MainWindow::SetupMsgBoxes()
 {
-    looser_msgbox = new QMessageBox();
+    looser_msgbox = new QMessageBox(this);
     looser_msgbox->setWindowTitle("GameOver");
     looser_msgbox->setText("FIeld is boomed");
 
-    again_for_loosers_btn = new QPushButton("Again");
+    again_for_loosers_btn = new QPushButton("Again", this);
     looser_msgbox->addButton(again_for_loosers_btn, QMessageBox::ActionRole);
-    sorry_btn = new QPushButton("Sorry");
+    sorry_btn = new QPushButton("Sorry", this);
     looser_msgbox->addButton(sorry_btn, QMessageBox::ActionRole);
 
-    winner_msgbox = new QMessageBox();
+    winner_msgbox = new QMessageBox(this);
     winner_msgbox->setWindowTitle("Win!");
     winner_msgbox->setText("You are such a beauty!\nGeronimo!");
 
-    again_for_winners_btn = new QPushButton("One more");
+    again_for_winners_btn = new QPushButton("One more", this);
     winner_msgbox->addButton(again_for_winners_btn, QMessageBox::ActionRole);
-    super_btn = new QPushButton("Get rest");
+    super_btn = new QPushButton("Get rest", this);
     winner_msgbox->addButton(super_btn, QMessageBox::ActionRole);
 }
 
 void MainWindow::SetupSetuper()
 {
-    setuper = new Setuper(&settings);
+    setuper = new Setuper(&settings, this);
     connect(setuper, &Setuper::FieldSizeChanged, this, &MainWindow::RebuildField);
     connect(setuper, &Setuper::FieldDetailsChanged, this, &MainWindow::ResetField);
 }
 
 void MainWindow::SetupUI()
 {
-    stats = new StatData();
+    stats = new StatData(this);
     stats->Reset(settings.mines);
 
-    reset_btn = new QPushButton("Reset");
+    reset_btn = new QPushButton("Reset", this);
     connect(reset_btn, &QPushButton::clicked, this, &MainWindow::ResetField);
 
-    setuper_btn = new QPushButton("Settings");
+    setuper_btn = new QPushButton("Settings", this);
     connect(setuper_btn, &QPushButton::clicked, setuper, &Setuper::show);
 }
 
 void MainWindow::SetupField()
 {
-    field = new FieldView(settings.rows, settings.cols, settings.mines);
+    field = new FieldView(settings.rows, settings.cols, settings.mines, this);
 
     connect(field, &FieldView::FieldIsCompleted, this, &MainWindow::Win);
     connect(field, &FieldView::FieldIsBoomed, this, &MainWindow::GameOver);
@@ -91,10 +91,10 @@ void MainWindow::RebuildField()
     }
     SetupField();
 
-    QVBoxLayout* field_lay = new QVBoxLayout();
+    QVBoxLayout* field_lay = new QVBoxLayout(this);
     field_lay->addWidget(field, 0, Qt::AlignHCenter);
 
-    QWidget* field_w = new QWidget();
+    QWidget* field_w = new QWidget(this);
     field_w->setLayout(field_lay);
     centralWidget()->layout()->addWidget(field_w);
 

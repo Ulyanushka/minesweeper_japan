@@ -5,15 +5,15 @@
 
 StatData::StatData(QWidget* parent) : QWidget(parent)
 {
-    QVBoxLayout* main_lay = new QVBoxLayout();
+    QVBoxLayout* main_lay = new QVBoxLayout(this);
 
-    mines_data = new QLabel();
+    mines_data = new QLabel(this);
     main_lay->addWidget(mines_data);
 
-    mistakes_data = new QLabel();
+    mistakes_data = new QLabel(this);
     main_lay->addWidget(mistakes_data);
 
-    clicks_data = new QLabel();
+    clicks_data = new QLabel(this);
     main_lay->addWidget(clicks_data);
 
     setLayout(main_lay);

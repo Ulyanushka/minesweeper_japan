@@ -156,7 +156,7 @@ void FieldView::ResetField()
 
 void FieldView::MakeCell(int id)
 {
-    cells.push_back(new CellView(id));
+    cells.push_back(new CellView(id, this));
 
     connect(cells[id], &CellView::Clicked, this, &FieldView::Clicked);
     connect(cells[id], &CellView::MineOpened, this, &FieldView::Boom);
