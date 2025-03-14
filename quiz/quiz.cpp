@@ -1,6 +1,7 @@
 #include "quiz.h"
 
-Quiz::Quiz()
+
+Quiz::Quiz(QWidget* parent) : QWidget(parent)
 {
 
 }
