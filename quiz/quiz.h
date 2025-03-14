@@ -7,15 +7,48 @@
 #include "data_reader.h"
 
 
-struct QuizItem
-{
-
+enum class Example {
+    Word,
+    Reading,
+    Definition
 };
 
-struct QuizData
-{
 
+struct DataItem
+{
+    int id;
+    QString character;
+    QString definition;
+    QStringList example_1;
+    QStringList example_2;
 };
+
+
+class QuizData
+{
+public:
+    QuizData(const QString& title, const QList<DataItem>& data);
+    ~QuizData() = default;
+
+    DataItem* GetQuestionData();
+    QStringList GetWrongAnswers(int right_answer_id, int num_of_answers);
+
+private:
+    DataItem* GetRandomItem();
+
+private:
+    QList<DataItem> data;
+};
+
+
+struct QuizStatData
+{
+    int wins = 0;
+    int fails = 0;
+    int all_questions = 0;
+    int opened_questions = 0;
+};
+
 
 class Quiz : public QWidget
 {
@@ -25,8 +58,9 @@ public:
     ~Quiz() = default;
 
 private:
+    QuizStatData stats;
     DataReader* reader;
-
+    QuizData* data;
 };
 
 #endif // QUIZ_H
