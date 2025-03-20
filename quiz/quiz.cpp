@@ -22,6 +22,7 @@ inline static const char* bad_answer_btn_color = "background-color: rgba(185, 29
 inline static const char* clicked_btn_border = "border-style: outset; border-width: 5px; border-color: rgba(200, 255 , 0, 1.0);";
 inline static const char* not_clicked_btn_border = "border-width: 0px;";
 
+
 AnswerBtn::AnswerBtn(QWidget* parent) : QPushButton(parent)
 {
     setStyleSheet(answer_font_size);
@@ -113,9 +114,16 @@ Quiz::~Quiz()
     }
 }
 
-void Quiz::SetData(const QString& file_path)
+void Quiz::SetData(const QStringList& files_pathes)
 {
-    LoadJsonFile(file_path);
+    if (quiz_data != nullptr) delete quiz_data;
+
+    QList<DataItem> data;
+    for (const auto& file_path : files_pathes) {
+        data.append(GetDataFromJson(file_path));
+    }
+
+    quiz_data = new QuizData(data);
 }
 
 void Quiz::Start()
@@ -192,23 +200,22 @@ void Quiz::SetResultData(const QString& status, const QString& accept_btn_text,
     next_question_btn->setEnabled(is_question_done);
 }
 
-void Quiz::LoadJsonFile(const QString& file_path)
+QList<DataItem> Quiz::GetDataFromJson(const QString& file_path)
 {
+    QList<DataItem> data;
+
     QFile file(file_path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "bad file";
-        return;
+        return data;
     }
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
     file.close();
     if(doc.isNull()) {
         qDebug() << "bad json";
-        return;
+        return data;
     }
     qDebug() << "file and json are ok";
-
-    QString title = doc.object()[meta.title].toString();
-    QList<DataItem> data;
 
     QJsonArray items = doc.object()[meta.items].toArray();
     for (const auto& item_value : items) {
@@ -222,7 +229,5 @@ void Quiz::LoadJsonFile(const QString& file_path)
         //qDebug() << data_item.GetStrForDebug();
         data.append(data_item);
     }
-
-    if (quiz_data != nullptr) delete quiz_data;
-    quiz_data = new QuizData(title, data);
+    return data;
 }

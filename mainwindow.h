@@ -35,14 +35,14 @@ private:
     void ForgiveMistake();
 
 private:
-    //QPushButton* quiz_btn;
     Quiz* quiz;
 
     GameEndMsgBox* loose_game_msgbox;
     GameEndMsgBox* win_game_msgbox;
 
     Setuper* setuper;
-    Settings settings;
+    MinesweeperSettings minesweeper_settings;
+    QuizSettings quiz_settings;
 
     StatData* stats;
     QPushButton* reset_btn;

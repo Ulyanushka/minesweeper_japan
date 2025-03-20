@@ -14,8 +14,8 @@ QString DataItem::GetStrForDebug()
 
 //QUIZ_DATA----------------------------------------------------------------------------------------
 
-QuizData::QuizData(const QString& title, const QList<DataItem>& data)
-    : title(title), data(data)
+QuizData::QuizData(const QList<DataItem>& data)
+    : data(data)
 {
 
 }

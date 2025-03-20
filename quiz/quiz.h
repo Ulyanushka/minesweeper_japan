@@ -42,9 +42,9 @@ public:
     ~Quiz();
 
 public:
-    void SetData(const QString& file_path);
+    void SetNumOfAnswers(int num);
+    void SetData(const QStringList& files_pathes);
     void Start();
-    //void SetNumOfAnswers(int num);
 
 signals:
     void Passed();
@@ -60,7 +60,7 @@ private:
 
     void SetResultData(const QString& status, const QString& accept_btn_text,
                        bool is_there_escape, bool is_question_done);
-    void LoadJsonFile(const QString& file_path);
+    QList<DataItem> GetDataFromJson(const QString& file_path);
 
 private:
     QLabel* question_lbl;

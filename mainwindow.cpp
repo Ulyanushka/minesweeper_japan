@@ -17,13 +17,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
     QVBoxLayout* main_lay = new QVBoxLayout(main_w);
     //main_lay->setSizeConstraint(QLayout::SetFixedSize);
 
-    /*
-    QWidget* quiz_w = new QWidget(this);
-    QHBoxLayout* quiz_lay = new QHBoxLayout(quiz_w);
-    quiz_lay->addWidget(quiz_btn);
-    main_lay->addWidget(quiz_w);
-    */
-
     QWidget* ui_w = new QWidget(this);
     QGridLayout* ui_lay = new QGridLayout(ui_w);
     ui_lay->setHorizontalSpacing(10);
@@ -54,12 +47,9 @@ MainWindow::~MainWindow()
 void MainWindow::SetupQuiz()
 {
     quiz = new Quiz();
-    quiz->SetData("data/jap_kanji_n5.json");
+    quiz->SetData(quiz_settings.databases);
     connect(quiz, &Quiz::Failed, this, &MainWindow::ResetField);
     connect(quiz, &Quiz::Passed, this, &MainWindow::ForgiveMistake);
-
-    //quiz_btn = new QPushButton("Try Quiz", this);
-    //connect(quiz_btn, &QPushButton::clicked, quiz, &Quiz::Start);
 }
 
 void MainWindow::SetupMsgBoxes()
@@ -75,7 +65,7 @@ void MainWindow::SetupMsgBoxes()
 
 void MainWindow::SetupSetuper()
 {
-    setuper = new Setuper(&settings);
+    setuper = new Setuper(&minesweeper_settings, &quiz_settings);
     connect(setuper, &Setuper::FieldSizeChanged, this, &MainWindow::RebuildField);
     connect(setuper, &Setuper::FieldDetailsChanged, this, &MainWindow::ResetField);
 }
@@ -83,7 +73,7 @@ void MainWindow::SetupSetuper()
 void MainWindow::SetupUI()
 {
     stats = new StatData(this);
-    stats->Reset(settings.mines);
+    stats->Reset(minesweeper_settings.mines);
 
     reset_btn = new QPushButton("Reset", this);
     connect(reset_btn, &QPushButton::clicked, this, &MainWindow::ResetField);
@@ -94,7 +84,8 @@ void MainWindow::SetupUI()
 
 void MainWindow::SetupField()
 {
-    field = new FieldView(settings.rows, settings.cols, settings.mines, this);
+    field = new FieldView(minesweeper_settings.rows, minesweeper_settings.cols,
+                          minesweeper_settings.mines, this);
 
     connect(field, &FieldView::FieldIsCompleted, win_game_msgbox, &GameEndMsgBox::exec);
     connect(field, &FieldView::FieldIsBoomed, loose_game_msgbox, &GameEndMsgBox::exec);
@@ -116,13 +107,13 @@ void MainWindow::RebuildField()
     field_lay->addWidget(field, 0, Qt::AlignHCenter);
     centralWidget()->layout()->addWidget(field_w);
 
-    stats->Reset(settings.mines);
+    stats->Reset(minesweeper_settings.mines);
 }
 
 void MainWindow::ResetField()
 {
-    field->Reset(settings.mines);
-    stats->Reset(settings.mines);
+    field->Reset(minesweeper_settings.mines);
+    stats->Reset(minesweeper_settings.mines);
 }
 
 void MainWindow::ForgiveMistake()

@@ -38,7 +38,7 @@ struct DataItem
 class QuizData
 {
 public:
-    QuizData(const QString& title, const QList<DataItem>& data);
+    QuizData(const QList<DataItem>& data);
     ~QuizData() = default;
 
     void MarkThisQuestionPassed(int question_id);
@@ -51,8 +51,6 @@ private:
 
 private:
     QList<int> passed_questions;
-
-    QString title;
     QList<DataItem> data;
 };
 

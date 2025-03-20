@@ -6,10 +6,10 @@
 #include <QPushButton>
 
 
-struct Settings
+struct MinesweeperSettings
 {
-    bool operator==(const Settings& other) const;
-    bool IsSameSize(const Settings& other) const;
+    bool operator==(const MinesweeperSettings& other) const;
+    bool IsSameSize(const MinesweeperSettings& other) const;
 
     int CountCells() const;
     int CountMinesPercent() const;
@@ -20,12 +20,21 @@ struct Settings
     int mines = 40;
 };
 
+struct QuizSettings
+{
+    int num_of_answers = 8;
+    int num_of_questions_for_succes = 1;
+    QStringList databases = {"data/jap_kanji_n5.json"};
+};
+
 
 class Setuper : public QWidget
 {
     Q_OBJECT
 public:
-    Setuper(Settings* settings, QWidget* parent = nullptr);
+    Setuper(MinesweeperSettings* minesweeper_settings,
+            QuizSettings* quiz_settings,
+            QWidget* parent = nullptr);
     ~Setuper();
 
 signals:
@@ -46,8 +55,8 @@ private:
     void CheckChanges();
 
 private:
-    Settings* cur = nullptr;
-    Settings temp;
+    MinesweeperSettings* cur_minesweeper_settings = nullptr;
+    MinesweeperSettings temp_minesweeper_settings;
 
     QLineEdit* rows_le;
     QLineEdit* cols_le;
