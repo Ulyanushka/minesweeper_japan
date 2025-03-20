@@ -14,9 +14,11 @@ public:
     CellView(int id, QWidget* parent = nullptr);
     ~CellView();
 
-    void UpdateData(CellData* new_data);
+    void SetData(CellData* new_data);
     void Open();
     void Hide();
+    void Block();
+    void Unblock();
 
 signals:
     void Clicked();
@@ -35,6 +37,7 @@ private:
 
 private:
     int id;
+    bool is_blocked;
     bool is_opened;
     bool is_marked;
     CellData* data;

@@ -15,10 +15,19 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.h mainwindow.cpp
+
         setuper.h setuper.cpp
+
+        minesweeper/game_end_msgbox.h minesweeper/game_end_msgbox.cpp
         minesweeper/stat_data.h minesweeper/stat_data.cpp
+
         minesweeper/field_data.h minesweeper/field_data.cpp
         minesweeper/field_view.h minesweeper/field_view.cpp
+
+        quiz/quiz.h quiz/quiz.cpp
+        quiz/quiz_data.h quiz/quiz_data.cpp
+        quiz/data_reader.h quiz/data_reader.cpp
+
         trash/cells_model.h trash/cells_model.cpp
 )
 
@@ -26,7 +35,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(ms_j_1
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET ms_j_1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

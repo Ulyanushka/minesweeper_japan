@@ -24,10 +24,11 @@ CellView::~CellView()
     data = nullptr;
 }
 
-void CellView::UpdateData(CellData* new_data)
+void CellView::SetData(CellData* new_data)
 {
     data = new_data;
     Close();
+    Unblock();
     setStyleSheet(closed_cell_color);    
 }
 
@@ -64,9 +65,19 @@ void CellView::Hide()
     Mark();
 }
 
+void CellView::Block()
+{
+    is_blocked = true;
+}
+
+void CellView::Unblock()
+{
+    is_blocked = false;
+}
+
 void CellView::mousePressEvent(QMouseEvent* e)
 {
-    if (!(e->button() == Qt::LeftButton || e->button() == Qt::RightButton)) return;
+    if (is_blocked || !(e->button() == Qt::LeftButton || e->button() == Qt::RightButton)) return;
     if (!is_opened) emit Clicked();
 
     if (e->button() == Qt::LeftButton) {
@@ -127,6 +138,9 @@ void FieldView::Reset(int new_mines)
 
 void FieldView::HideMine()
 {
+    for (auto& cell : cells) {
+        cell->Unblock();
+    }
     cells[opened_mine]->Hide();
 }
 
@@ -135,13 +149,14 @@ void FieldView::ResetData()
     if (data != nullptr) delete data;
     data = new FieldData(rows, cols, mines);
     for (int i = 0; i < rows * cols; i++) {
-        cells[i]->UpdateData(&data->GetCellData(i));
+        cells[i]->SetData(&data->GetCellData(i));
     }
 }
 
 void FieldView::ResetField()
 {
     QGridLayout* field_lay = new QGridLayout(this);
+    field_lay->setSizeConstraint(QLayout::SetFixedSize);
     field_lay->setHorizontalSpacing(0);
     field_lay->setVerticalSpacing(0);
 
@@ -150,13 +165,12 @@ void FieldView::ResetField()
         field_lay->addWidget(cells[i], i / cols, i % cols);
     }
 
-    setLayout(field_lay);
-    layout()->setSizeConstraint(QLayout::SetFixedSize);
+    //layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 void FieldView::MakeCell(int id)
 {
-    cells.push_back(new CellView(id));
+    cells.push_back(new CellView(id, this));
 
     connect(cells[id], &CellView::Clicked, this, &FieldView::Clicked);
     connect(cells[id], &CellView::MineOpened, this, &FieldView::Boom);
@@ -203,6 +217,9 @@ void FieldView::OpenVoidArea(int id_central_cell)
 
 void FieldView::Boom(int id_mine)
 {
+    for (auto& cell : cells) {
+        cell->Block();
+    }
     opened_mine = id_mine;
     emit FieldIsBoomed();
 }

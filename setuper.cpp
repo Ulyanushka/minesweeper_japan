@@ -47,7 +47,7 @@ Setuper::Setuper(Settings* settings, QWidget* parent)
 {
     setWindowTitle("Settings");
 
-    QGridLayout* main_lay = new QGridLayout();
+    QGridLayout* main_lay = new QGridLayout(this);
     main_lay->setHorizontalSpacing(10);
     main_lay->setVerticalSpacing(10);
 
@@ -68,15 +68,20 @@ Setuper::Setuper(Settings* settings, QWidget* parent)
     main_lay->addWidget(cancel_btn, 6, 0, Qt::AlignHCenter);
     main_lay->addWidget(save_btn, 6, 1, Qt::AlignHCenter);
 
-    setLayout(main_lay);
+    setFixedSize(minimumSize());
+}
+
+Setuper::~Setuper()
+{
+    cur = nullptr;
 }
 
 void Setuper::SetupUI()
 {
     QRegularExpression side_regexp("[1-9]|[1-2][0-9]|30");
-    QValidator* side_validator = new QRegularExpressionValidator(side_regexp);
+    QValidator* side_validator = new QRegularExpressionValidator(side_regexp, this);
 
-    rows_le = new QLineEdit();
+    rows_le = new QLineEdit(this);
     rows_le->setValidator(side_validator);
     connect(rows_le, &QLineEdit::textEdited, this, [this](){
         temp.rows = rows_le->text().toInt();
@@ -84,7 +89,7 @@ void Setuper::SetupUI()
         UpdateAdditionalData();
     });
 
-    cols_le = new QLineEdit();
+    cols_le = new QLineEdit(this);
     cols_le->setValidator(side_validator);
     connect(cols_le, &QLineEdit::textEdited, this, [this](){
         temp.cols = cols_le->text().toInt();
@@ -92,28 +97,28 @@ void Setuper::SetupUI()
         UpdateAdditionalData();
     });
 
-    size_lbl = new QLabel();
+    size_lbl = new QLabel(this);
 
-    mines_le = new QLineEdit();
+    mines_le = new QLineEdit(this);
     connect(mines_le, &QLineEdit::textEdited, this, [this](){
         temp.mines = mines_le->text().toInt();
         CheckChanges();
         UpdateMinesData();
     });
 
-    mines_lbl = new QLabel();
+    mines_lbl = new QLabel(this);
 }
 
 void Setuper::SetupBtns()
 {
-    cancel_btn = new QPushButton("Cancel");
+    cancel_btn = new QPushButton("Cancel", this);
     cancel_btn->setDisabled(true);
     connect(cancel_btn, &QPushButton::clicked, this, [this]() {
         temp = *cur;
         SetCurrentData();
     });
 
-    save_btn = new QPushButton("Save");
+    save_btn = new QPushButton("Save", this);
     save_btn->setDisabled(true);
     connect(save_btn, &QPushButton::clicked, this, [this](){
         bool is_size_changed = !cur->IsSameSize(temp);

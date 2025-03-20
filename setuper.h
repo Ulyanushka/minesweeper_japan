@@ -26,7 +26,7 @@ class Setuper : public QWidget
     Q_OBJECT
 public:
     Setuper(Settings* settings, QWidget* parent = nullptr);
-    ~Setuper() = default;
+    ~Setuper();
 
 signals:
     void FieldSizeChanged();
@@ -46,7 +46,7 @@ private:
     void CheckChanges();
 
 private:
-    Settings* cur;
+    Settings* cur = nullptr;
     Settings temp;
 
     QLineEdit* rows_le;
