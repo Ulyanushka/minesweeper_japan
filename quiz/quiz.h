@@ -2,7 +2,7 @@
 #define QUIZ_H
 
 #include <QLabel>
-#include <QPushButton>>
+#include <QPushButton>
 
 #include "quiz_data.h"
 
@@ -64,6 +64,7 @@ private:
 
 private:
     QLabel* question_lbl;
+    int cur_question_id;
 
     int num_of_answers = 8;
     QList<AnswerBtn*> answers_btns;

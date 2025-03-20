@@ -129,6 +129,7 @@ void Quiz::CreateAnswerBtn()
 {
     answers_btns.append(new AnswerBtn(this));
     connect(answers_btns.last(), &AnswerBtn::GoodAnswerClicked, this, [this]() {
+        quiz_data->MarkThisQuestionPassed(cur_question_id);
         RevealAllAnswers();
         SetResultData("You are such a beauty!", "Continue Game", true, true);
         is_passed = true;
@@ -155,6 +156,7 @@ void Quiz::SetupBtns()
 void Quiz::SetQuestion()
 {
     DataItem* question = quiz_data->GetQuestionData();
+    cur_question_id = question->id;
     question_lbl->setText(question->term);
     answers_btns[0]->SetAnswer(question->definition, true); //good answer
 

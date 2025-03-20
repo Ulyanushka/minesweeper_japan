@@ -41,6 +41,8 @@ public:
     QuizData(const QString& title, const QList<DataItem>& data);
     ~QuizData() = default;
 
+    void MarkThisQuestionPassed(int question_id);
+
     DataItem* GetQuestionData();
     QStringList GetBadAnswers(int right_answer_id, int num_of_answers);
 
@@ -48,7 +50,7 @@ private:
     int GetRandomItemId();
 
 private:
-    //QList<int> passed_questions;
+    QList<int> passed_questions;
 
     QString title;
     QList<DataItem> data;

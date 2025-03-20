@@ -20,8 +20,17 @@ QuizData::QuizData(const QString& title, const QList<DataItem>& data)
 
 }
 
+void QuizData::MarkThisQuestionPassed(int question_id)
+{
+    passed_questions.append(question_id);
+}
+
 DataItem* QuizData::GetQuestionData()
 {
+    int question_id = GetRandomItemId();
+    while(passed_questions.contains(question_id)) {
+        question_id = GetRandomItemId();
+    }
     return &data[GetRandomItemId()];
 }
 
