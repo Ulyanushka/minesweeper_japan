@@ -58,6 +58,9 @@ private:
     MinesweeperSettings* cur_minesweeper_settings = nullptr;
     MinesweeperSettings temp_minesweeper_settings;
 
+    QuizSettings* cur_quiz_settings = nullptr;
+    QuizSettings temp_quiz_settings;
+
     QLineEdit* rows_le;
     QLineEdit* cols_le;
     QLabel* size_lbl;

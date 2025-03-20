@@ -47,7 +47,9 @@ Setuper::Setuper(MinesweeperSettings* minesweeper_settings,
                  QWidget* parent)
     : QWidget(parent),
     cur_minesweeper_settings(minesweeper_settings),
-    temp_minesweeper_settings(*minesweeper_settings)
+    temp_minesweeper_settings(*minesweeper_settings),
+    cur_quiz_settings(quiz_settings),
+    temp_quiz_settings(*quiz_settings)
 {
     setWindowTitle("Settings");
 

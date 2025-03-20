@@ -88,7 +88,10 @@ void MainWindow::SetupField()
                           minesweeper_settings.mines, this);
 
     connect(field, &FieldView::FieldIsCompleted, win_game_msgbox, &GameEndMsgBox::exec);
-    connect(field, &FieldView::FieldIsBoomed, loose_game_msgbox, &GameEndMsgBox::exec);
+    connect(field, &FieldView::FieldIsBoomed, this, [this](){
+        stats->AddMistake();
+        loose_game_msgbox->exec();
+    });
 
     connect(field, &FieldView::MarksCounterChanged, stats, &StatData::UpdateMinesData);
     connect(field, &FieldView::Clicked, stats, &StatData::AddClick);
@@ -119,5 +122,4 @@ void MainWindow::ResetField()
 void MainWindow::ForgiveMistake()
 {
     field->HideMine();
-    stats->AddMistake();
 }
