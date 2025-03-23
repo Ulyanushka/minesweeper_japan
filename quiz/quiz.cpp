@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QRandomGenerator>
 #include <QMouseEvent>
+#include <QString>
 
 
 //ANSWER_BTN---------------------------------------------------------------------------------------
@@ -68,7 +69,8 @@ void AnswerBtn::Reveal()
 inline static const char* question_font_size = "font-size: 50px;";
 
 
-Quiz::Quiz(int num_of_answers, QWidget* parent) : QWidget(parent)
+Quiz::Quiz(int num_of_questions, int num_of_answers, QWidget* parent)
+    : QWidget(parent), num_of_question_to_pass(num_of_questions), passed_questions(0)
 {   
     setWindowTitle("Quiz Time!");
     setWindowFlag(Qt::WindowCloseButtonHint, false);
@@ -94,10 +96,9 @@ Quiz::Quiz(int num_of_answers, QWidget* parent) : QWidget(parent)
     QWidget* res_w = new QWidget(this);
     QVBoxLayout* res_lay = new QVBoxLayout(res_w);
 
-    result = new QLabel(this);
+    SetupResultUI();
+    res_lay->addWidget(questions_to_pass, Qt::AlignHCenter);
     res_lay->addWidget(result, Qt::AlignHCenter);
-
-    SetupBtns();
     res_lay->addWidget(accept_result_btn, Qt::AlignHCenter);
     res_lay->addWidget(next_question_btn, Qt::AlignHCenter);
 
@@ -116,7 +117,7 @@ Quiz::~Quiz()
 
 void Quiz::SetNumOfQuestions(int num)
 {
-
+    num_of_question_to_pass = num;
 }
 
 void Quiz::SetNumOfAnswers(int num)
@@ -140,6 +141,7 @@ void Quiz::Start()
 {
     show();
     is_passed = false;
+    passed_questions = 0;
     SetQuestion();
 }
 
@@ -149,8 +151,11 @@ void Quiz::CreateAnswerBtn()
     connect(answers_btns.last(), &AnswerBtn::GoodAnswerClicked, this, [this]() {
         quiz_data->MarkThisQuestionPassed(cur_question_id);
         RevealAllAnswers();
-        SetResultData("You are such a beauty!", "Continue Game", true, true);
-        is_passed = true;
+        passed_questions++;
+        if (passed_questions == num_of_question_to_pass) {
+            is_passed = true;
+        }
+        SetResultData("You are such a beauty!", (is_passed) ? "Continue Game" : "Accept GameOver", true, true);
     });
     connect(answers_btns.last(), &AnswerBtn::BadAnswerCLicked, this, [this]() {
         RevealAllAnswers();
@@ -159,8 +164,11 @@ void Quiz::CreateAnswerBtn()
     });
 }
 
-void Quiz::SetupBtns()
+void Quiz::SetupResultUI()
 {
+    questions_to_pass = new QLabel(this);
+    result = new QLabel(this);
+
     accept_result_btn = new QPushButton(this);
     connect(accept_result_btn, &QPushButton::clicked, this, [this]() {
         close();
@@ -204,6 +212,8 @@ void Quiz::RevealAllAnswers()
 void Quiz::SetResultData(const QString& status, const QString& accept_btn_text,
                          bool is_there_escape, bool is_question_done)
 {
+    questions_to_pass->setText(QString("Passed Questions: %1/%2")
+                                   .arg(passed_questions).arg(num_of_question_to_pass));
     result->setText(status);
     accept_result_btn->setText(accept_btn_text);
     accept_result_btn->setEnabled(is_there_escape);

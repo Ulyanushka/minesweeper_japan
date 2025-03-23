@@ -38,7 +38,7 @@ class Quiz : public QWidget
 {
     Q_OBJECT
 public:
-    Quiz(int num_of_answers = 8, QWidget* parent = nullptr);
+    Quiz(int num_of_questions = 3, int num_of_answers = 8, QWidget* parent = nullptr);
     ~Quiz();
 
 public:
@@ -54,7 +54,7 @@ signals:
 
 private:
     void CreateAnswerBtn();
-    void SetupBtns();
+    void SetupResultUI();
 
     void SetQuestion();
     void HideGoodAnswer(int good_answer_id);
@@ -71,7 +71,12 @@ private:
     QList<AnswerBtn*> answers_btns;
 
     bool is_passed;
+    int num_of_question_to_pass;
+    int passed_questions;
+
+    QLabel* questions_to_pass;
     QLabel* result;
+
     QPushButton* accept_result_btn;
     QPushButton* next_question_btn;
 
