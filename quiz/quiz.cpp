@@ -67,6 +67,8 @@ void AnswerBtn::Reveal()
 //QUIZ---------------------------------------------------------------------------------------------
 
 inline static const char* question_font_size = "font-size: 50px;";
+inline static const char* continue_good = "Continue Game";
+inline static const char* continue_bad = "Accept GameOver";
 
 
 Quiz::Quiz(int num_of_questions, int num_of_answers, QWidget* parent)
@@ -155,12 +157,12 @@ void Quiz::CreateAnswerBtn()
         if (passed_questions == num_of_question_to_pass) {
             is_passed = true;
         }
-        SetResultData("You are such a beauty!", (is_passed) ? "Continue Game" : "Accept GameOver", true, true);
+        SetResultData("You are such a beauty!", (is_passed) ? continue_good : continue_bad, true, true);
     });
     connect(answers_btns.last(), &AnswerBtn::BadAnswerCLicked, this, [this]() {
         RevealAllAnswers();
-        (is_passed) ? SetResultData("Wrong answer, but you had a right one.", "Continue Game", true, true)
-                    : SetResultData("Oh poor gamer...", "Accept GameOver", true, true);
+        (is_passed) ? SetResultData("Wrong answer, but you've passed the quiz already.", continue_good, true, true)
+                    : SetResultData("Oh poor gamer...", continue_bad, true, true);
     });
 }
 
