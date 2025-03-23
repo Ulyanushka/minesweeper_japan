@@ -49,8 +49,8 @@ void AnswerBtn::mousePressEvent(QMouseEvent* e)
 void AnswerBtn::Hide()
 {
     is_blocked = false;
-    clicked(false);
     setStyleSheet(hided_answer_btn_color);
+    emit clicked(false);
 }
 
 void AnswerBtn::Reveal()
@@ -71,8 +71,8 @@ inline static const char* continue_good = "Continue Game";
 inline static const char* continue_bad = "Accept GameOver";
 
 
-Quiz::Quiz(int num_of_questions, int num_of_answers, QWidget* parent)
-    : QWidget(parent), num_of_question_to_pass(num_of_questions), passed_questions(0)
+Quiz::Quiz(int num_of_questions, int num_of_answers, const QuizData& quiz_data, QWidget* parent)
+    : QWidget(parent), num_of_question_to_pass(num_of_questions), passed_questions(0), quiz_data(quiz_data)
 {   
     setWindowTitle("Quiz Time!");
     setWindowFlag(Qt::WindowCloseButtonHint, false);
@@ -109,34 +109,29 @@ Quiz::Quiz(int num_of_questions, int num_of_answers, QWidget* parent)
     setFixedSize(minimumSize());
 }
 
-Quiz::~Quiz()
-{
-    if (quiz_data != nullptr) {
-        delete quiz_data;
-        quiz_data = nullptr;
-    }
-}
-
 void Quiz::SetNumOfQuestions(int num)
 {
     num_of_question_to_pass = num;
 }
 
-void Quiz::SetNumOfAnswers(int num)
-{
-
-}
-
 void Quiz::SetData(const QStringList& files_pathes)
 {
-    if (quiz_data != nullptr) delete quiz_data;
-
     QList<DataItem> data;
     for (const auto& file_path : files_pathes) {
         data.append(GetDataFromJson(file_path));
     }
 
-    quiz_data = new QuizData(data);
+    quiz_data.SetData(data);
+}
+
+void Quiz::SetData(const QuizData& new_quiz_data)
+{
+    quiz_data = new_quiz_data;
+}
+
+QuizData Quiz::GetData() const
+{
+    return quiz_data;
 }
 
 void Quiz::Start()
@@ -151,7 +146,7 @@ void Quiz::CreateAnswerBtn()
 {
     answers_btns.append(new AnswerBtn(this));
     connect(answers_btns.last(), &AnswerBtn::GoodAnswerClicked, this, [this]() {
-        quiz_data->MarkThisQuestionPassed(cur_question_id);
+        quiz_data.MarkThisQuestionPassed(cur_question_id);
         RevealAllAnswers();
         passed_questions++;
         if (passed_questions == num_of_question_to_pass) {
@@ -183,11 +178,11 @@ void Quiz::SetupResultUI()
 
 void Quiz::SetQuestion()
 {
-    DataItem* question = quiz_data->GetQuestionData();
+    DataItem* question = quiz_data.GetQuestionData();
     cur_question_id = question->id;
     question_lbl->setText(question->term);
 
-    QStringList bad_answers = quiz_data->GetBadAnswers(question->id, answers_btns.size()-1);
+    QStringList bad_answers = quiz_data.GetBadAnswers(question->id, answers_btns.size()-1);
     for (int i = 0; i < bad_answers.size(); i++) {
         answers_btns[i]->SetAnswer(bad_answers[i], false);
     }
@@ -222,7 +217,7 @@ void Quiz::SetResultData(const QString& status, const QString& accept_btn_text,
     next_question_btn->setEnabled(is_question_done);
 }
 
-QList<DataItem> Quiz::GetDataFromJson(const QString& file_path)
+QList<DataItem> Quiz::GetDataFromJson(const QString& file_path) const
 {
     QList<DataItem> data;
 

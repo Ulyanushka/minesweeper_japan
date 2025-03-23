@@ -23,7 +23,7 @@ struct MinesweeperSettings
 struct QuizSettings
 {
     int num_of_answers = 8;
-    int num_of_questions_for_succes = 1;
+    int num_of_questions_for_succes = 3;
     QStringList databases = {"data/jap_kanji_n5.json"};
 };
 

@@ -38,13 +38,17 @@ class Quiz : public QWidget
 {
     Q_OBJECT
 public:
-    Quiz(int num_of_questions = 3, int num_of_answers = 8, QWidget* parent = nullptr);
-    ~Quiz();
+    Quiz(int num_of_questions = 3, int num_of_answers = 8,
+         const QuizData& quiz_data = QuizData(),
+         QWidget* parent = nullptr);
+    ~Quiz() = default;
 
 public:
     void SetNumOfQuestions(int num);
-    void SetNumOfAnswers(int num);
     void SetData(const QStringList& files_pathes);
+    void SetData(const QuizData& new_quiz_data);
+
+    QuizData GetData() const;
 
     void Start();
 
@@ -62,7 +66,8 @@ private:
 
     void SetResultData(const QString& status, const QString& accept_btn_text,
                        bool is_there_escape, bool is_question_done);
-    QList<DataItem> GetDataFromJson(const QString& file_path);
+
+    QList<DataItem> GetDataFromJson(const QString& file_path) const;
 
 private:
     QLabel* question_lbl;
@@ -81,7 +86,7 @@ private:
     QPushButton* next_question_btn;
 
     QuizStatData stats;
-    QuizData* quiz_data = nullptr;
+    QuizData quiz_data;
     MetaData meta;
 };
 

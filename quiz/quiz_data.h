@@ -38,8 +38,11 @@ struct DataItem
 class QuizData
 {
 public:
+    QuizData();
     QuizData(const QList<DataItem>& data);
     ~QuizData() = default;
+
+    void SetData(const QList<DataItem>& new_data);
 
     void MarkThisQuestionPassed(int question_id);
 

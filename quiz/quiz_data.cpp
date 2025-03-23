@@ -14,10 +14,20 @@ QString DataItem::GetStrForDebug()
 
 //QUIZ_DATA----------------------------------------------------------------------------------------
 
-QuizData::QuizData(const QList<DataItem>& data)
-    : data(data)
+QuizData::QuizData()
 {
 
+}
+
+QuizData::QuizData(const QList<DataItem>& data) : data(data)
+{
+
+}
+
+void QuizData::SetData(const QList<DataItem>& new_data)
+{
+    data = new_data;
+    passed_questions.clear();
 }
 
 void QuizData::MarkThisQuestionPassed(int question_id)

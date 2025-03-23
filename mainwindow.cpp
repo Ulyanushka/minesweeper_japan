@@ -46,7 +46,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::SetupQuiz()
 {
-    quiz = new Quiz();
+    quiz = new Quiz(quiz_settings.num_of_questions_for_succes,
+                    quiz_settings.num_of_answers);
     quiz->SetData(quiz_settings.databases);
     connect(quiz, &Quiz::Failed, this, &MainWindow::ResetField);
     connect(quiz, &Quiz::Passed, this, &MainWindow::ForgiveMistake);
@@ -66,8 +67,21 @@ void MainWindow::SetupMsgBoxes()
 void MainWindow::SetupSetuper()
 {
     setuper = new Setuper(&minesweeper_settings, &quiz_settings);
+
     connect(setuper, &Setuper::FieldSizeChanged, this, &MainWindow::RebuildField);
     connect(setuper, &Setuper::FieldMinesChanged, this, &MainWindow::ResetField);
+
+    connect(setuper, &Setuper::QuizNumOfAnswersChanged, this, [this](){
+        QuizData old_data = quiz->GetData();
+        delete quiz;
+        quiz = new Quiz(quiz_settings.num_of_questions_for_succes, quiz_settings.num_of_answers, old_data);
+    });
+    connect(setuper, &Setuper::QuizNumOfQuestionsChanged, this, [this](){
+        quiz->SetNumOfQuestions(quiz_settings.num_of_questions_for_succes);
+    });
+    connect(setuper, &Setuper::QuizDatabasesChanged, this, [this](){
+        quiz->SetData(quiz_settings.databases);
+    });
 }
 
 void MainWindow::SetupUI()
