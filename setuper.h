@@ -39,9 +39,11 @@ public:
 
 signals:
     void FieldSizeChanged();
-    void FieldDetailsChanged();
+    void FieldMinesChanged();
 
-    void FieldSettingsChanged();
+    void QuizNumOfAnswersChanged();
+    void QuizNumOfQuestionsChanged();
+    void QuizDatabasesChanged();
 
 private:
     void SetupUI();

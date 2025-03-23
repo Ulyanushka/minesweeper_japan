@@ -23,6 +23,9 @@ QuizData::QuizData(const QList<DataItem>& data)
 void QuizData::MarkThisQuestionPassed(int question_id)
 {
     passed_questions.append(question_id);
+    if (passed_questions.size() > data.size()/2) {
+        passed_questions.clear();
+    }
 }
 
 DataItem* QuizData::GetQuestionData()

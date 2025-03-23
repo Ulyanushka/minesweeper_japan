@@ -129,7 +129,7 @@ void Setuper::SetupBtns()
     connect(save_btn, &QPushButton::clicked, this, [this](){
         bool is_size_changed = !cur_minesweeper_settings->IsSameSize(temp_minesweeper_settings);
         *cur_minesweeper_settings = temp_minesweeper_settings;
-        (is_size_changed) ? emit FieldSizeChanged() : emit FieldDetailsChanged();
+        (is_size_changed) ? emit FieldSizeChanged() : emit FieldMinesChanged();
     });
 }
 

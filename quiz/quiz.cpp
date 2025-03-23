@@ -68,7 +68,7 @@ void AnswerBtn::Reveal()
 inline static const char* question_font_size = "font-size: 50px;";
 
 
-Quiz::Quiz(QWidget* parent) : QWidget(parent)
+Quiz::Quiz(int num_of_answers, QWidget* parent) : QWidget(parent)
 {   
     setWindowTitle("Quiz Time!");
     setWindowFlag(Qt::WindowCloseButtonHint, false);
@@ -112,6 +112,16 @@ Quiz::~Quiz()
         delete quiz_data;
         quiz_data = nullptr;
     }
+}
+
+void Quiz::SetNumOfQuestions(int num)
+{
+
+}
+
+void Quiz::SetNumOfAnswers(int num)
+{
+
 }
 
 void Quiz::SetData(const QStringList& files_pathes)
@@ -166,21 +176,21 @@ void Quiz::SetQuestion()
     DataItem* question = quiz_data->GetQuestionData();
     cur_question_id = question->id;
     question_lbl->setText(question->term);
-    answers_btns[0]->SetAnswer(question->definition, true); //good answer
 
-    QStringList bad_answers = quiz_data->GetBadAnswers(question->id, num_of_answers);
-    for (int i = 1; i < num_of_answers; i++) {
+    QStringList bad_answers = quiz_data->GetBadAnswers(question->id, answers_btns.size()-1);
+    for (int i = 0; i < bad_answers.size(); i++) {
         answers_btns[i]->SetAnswer(bad_answers[i], false);
     }
+    answers_btns.last()->SetAnswer(question->definition, true); //good answer
 
-    HideGoodAnswer();
+    HideGoodAnswer(answers_btns.size()-1);
     (is_passed) ? SetResultData("Choose wisely!", "Continue Game", true, false)
                 : SetResultData("Choose wisely!", "No escape", false, false);
 }
 
 void Quiz::HideGoodAnswer(int good_answer_id)
 {
-    int new_id = QRandomGenerator::global()->bounded(num_of_answers);
+    int new_id = QRandomGenerator::global()->bounded(answers_btns.size());
     answers_btns.swapItemsAt(good_answer_id, new_id);
 }
 

@@ -38,12 +38,14 @@ class Quiz : public QWidget
 {
     Q_OBJECT
 public:
-    Quiz(QWidget* parent = nullptr);
+    Quiz(int num_of_answers = 8, QWidget* parent = nullptr);
     ~Quiz();
 
 public:
+    void SetNumOfQuestions(int num);
     void SetNumOfAnswers(int num);
     void SetData(const QStringList& files_pathes);
+
     void Start();
 
 signals:
@@ -55,7 +57,7 @@ private:
     void SetupBtns();
 
     void SetQuestion();
-    void HideGoodAnswer(int good_answer_id = 0);
+    void HideGoodAnswer(int good_answer_id);
     void RevealAllAnswers();
 
     void SetResultData(const QString& status, const QString& accept_btn_text,
@@ -66,7 +68,6 @@ private:
     QLabel* question_lbl;
     int cur_question_id;
 
-    int num_of_answers = 8;
     QList<AnswerBtn*> answers_btns;
 
     bool is_passed;

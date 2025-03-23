@@ -67,7 +67,7 @@ void MainWindow::SetupSetuper()
 {
     setuper = new Setuper(&minesweeper_settings, &quiz_settings);
     connect(setuper, &Setuper::FieldSizeChanged, this, &MainWindow::RebuildField);
-    connect(setuper, &Setuper::FieldDetailsChanged, this, &MainWindow::ResetField);
+    connect(setuper, &Setuper::FieldMinesChanged, this, &MainWindow::ResetField);
 }
 
 void MainWindow::SetupUI()
