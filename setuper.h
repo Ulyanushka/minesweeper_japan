@@ -11,8 +11,8 @@ struct MinesweeperSettings
     bool operator==(const MinesweeperSettings& other) const;
     bool IsSameSize(const MinesweeperSettings& other) const;
 
-    int CountCells() const;
-    int CountMinesPercent() const;
+    int GetCellsCounter() const;
+    int GetMinesPercent() const;
     bool AreMinesValid() const;
 
     int rows = 16;
@@ -28,22 +28,16 @@ struct QuizSettings
 };
 
 
-class Setuper : public QWidget
+class MinesweeperSetuper : public QWidget
 {
     Q_OBJECT
 public:
-    Setuper(MinesweeperSettings* minesweeper_settings,
-            QuizSettings* quiz_settings,
-            QWidget* parent = nullptr);
-    ~Setuper();
+    MinesweeperSetuper(MinesweeperSettings* settings, QWidget* parent = nullptr);
+    ~MinesweeperSetuper();
 
 signals:
-    void FieldSizeChanged();
-    void FieldMinesChanged();
-
-    void QuizNumOfAnswersChanged();
-    void QuizNumOfQuestionsChanged();
-    void QuizDatabasesChanged();
+    void SizeChanged();
+    void MinesNumChanged();
 
 private:
     void SetupUI();
@@ -57,11 +51,8 @@ private:
     void CheckChanges();
 
 private:
-    MinesweeperSettings* cur_minesweeper_settings = nullptr;
-    MinesweeperSettings temp_minesweeper_settings;
-
-    QuizSettings* cur_quiz_settings = nullptr;
-    QuizSettings temp_quiz_settings;
+    MinesweeperSettings* cur = nullptr;
+    MinesweeperSettings temp;
 
     QLineEdit* rows_le;
     QLineEdit* cols_le;
@@ -71,6 +62,28 @@ private:
 
     QPushButton* cancel_btn;
     QPushButton* save_btn;
+};
+
+
+class Setuper : public QWidget
+{
+    Q_OBJECT
+public:
+    Setuper(MinesweeperSettings* minesweeper_settings,
+            QuizSettings* quiz_settings,
+            QWidget* parent = nullptr);
+    ~Setuper();
+
+signals:
+    void MinesweeperSizeChanged();
+    void MinesweeperMinesNumChanged();
+
+    void QuizNumOfAnswersChanged();
+    void QuizNumOfQuestionsChanged();
+    void QuizDatabasesChanged();
+
+private:
+    MinesweeperSetuper* minesweeper_setuper = nullptr;
 };
 
 #endif // SETUPER_H

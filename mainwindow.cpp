@@ -68,8 +68,8 @@ void MainWindow::SetupSetuper()
 {
     setuper = new Setuper(&minesweeper_settings, &quiz_settings);
 
-    connect(setuper, &Setuper::FieldSizeChanged, this, &MainWindow::RebuildField);
-    connect(setuper, &Setuper::FieldMinesChanged, this, &MainWindow::ResetField);
+    connect(setuper, &Setuper::MinesweeperSizeChanged, this, &MainWindow::RebuildField);
+    connect(setuper, &Setuper::MinesweeperMinesNumChanged, this, &MainWindow::ResetField);
 
     connect(setuper, &Setuper::QuizNumOfAnswersChanged, this, [this](){
         QuizData old_data = quiz->GetData();

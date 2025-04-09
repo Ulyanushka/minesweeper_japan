@@ -3,6 +3,11 @@
 #include <QLayout>
 #include <QValidator>
 #include <QDebug>
+#include <QTabWidget>
+
+
+inline static const char* invalid_color = "background-color: rgba(185, 29, 113, 0.4);";
+inline static const char* valid_color = "background-color: ;";
 
 
 //SETTINGS-----------------------------------------------------------------------------------------
@@ -20,39 +25,25 @@ bool MinesweeperSettings::IsSameSize(const MinesweeperSettings& other) const
             && (cols == other.cols));
 }
 
-int MinesweeperSettings::CountCells() const
+int MinesweeperSettings::GetCellsCounter() const
 {
     return rows*cols;
 }
 
-int MinesweeperSettings::CountMinesPercent() const
+int MinesweeperSettings::GetMinesPercent() const
 {
-    return (CountCells() == 0) ? 0 : mines*100/CountCells();
+    return (GetCellsCounter() == 0) ? 0 : mines*100/GetCellsCounter();
 }
 
 bool MinesweeperSettings::AreMinesValid() const
 {
-    return ((mines > 0) && (mines < CountCells()));
+    return ((mines > 0) && (mines < GetCellsCounter()));
 }
 
-
-//SETUPER------------------------------------------------------------------------------------------
-
-inline static const char* invalid_color = "background-color: rgba(185, 29, 113, 0.4);";
-inline static const char* valid_color = "background-color: ;";
-
-
-Setuper::Setuper(MinesweeperSettings* minesweeper_settings,
-                 QuizSettings* quiz_settings,
-                 QWidget* parent)
-    : QWidget(parent),
-    cur_minesweeper_settings(minesweeper_settings),
-    temp_minesweeper_settings(*minesweeper_settings),
-    cur_quiz_settings(quiz_settings),
-    temp_quiz_settings(*quiz_settings)
+//MINESWEEPER_SETUPER------------------------------------------------------------------------------
+MinesweeperSetuper::MinesweeperSetuper(MinesweeperSettings* settings, QWidget* parent)
+    : QWidget(parent), cur(settings), temp(*settings)
 {
-    setWindowTitle("Settings");
-
     QGridLayout* main_lay = new QGridLayout(this);
     main_lay->setHorizontalSpacing(10);
     main_lay->setVerticalSpacing(10);
@@ -73,16 +64,14 @@ Setuper::Setuper(MinesweeperSettings* minesweeper_settings,
     SetupBtns();
     main_lay->addWidget(cancel_btn, 6, 0, Qt::AlignHCenter);
     main_lay->addWidget(save_btn, 6, 1, Qt::AlignHCenter);
-
-    setFixedSize(minimumSize());
 }
 
-Setuper::~Setuper()
+MinesweeperSetuper::~MinesweeperSetuper()
 {
-    cur_minesweeper_settings = nullptr;
+    cur = nullptr;
 }
 
-void Setuper::SetupUI()
+void MinesweeperSetuper::SetupUI()
 {
     QRegularExpression side_regexp("[1-9]|[1-2][0-9]|30");
     QValidator* side_validator = new QRegularExpressionValidator(side_regexp, this);
@@ -90,7 +79,7 @@ void Setuper::SetupUI()
     rows_le = new QLineEdit(this);
     rows_le->setValidator(side_validator);
     connect(rows_le, &QLineEdit::textEdited, this, [this](){
-        temp_minesweeper_settings.rows = rows_le->text().toInt();
+        temp.rows = rows_le->text().toInt();
         CheckChanges();
         UpdateAdditionalData();
     });
@@ -98,7 +87,7 @@ void Setuper::SetupUI()
     cols_le = new QLineEdit(this);
     cols_le->setValidator(side_validator);
     connect(cols_le, &QLineEdit::textEdited, this, [this](){
-        temp_minesweeper_settings.cols = cols_le->text().toInt();
+        temp.cols = cols_le->text().toInt();
         CheckChanges();
         UpdateAdditionalData();
     });
@@ -107,7 +96,7 @@ void Setuper::SetupUI()
 
     mines_le = new QLineEdit(this);
     connect(mines_le, &QLineEdit::textEdited, this, [this](){
-        temp_minesweeper_settings.mines = mines_le->text().toInt();
+        temp.mines = mines_le->text().toInt();
         CheckChanges();
         UpdateMinesData();
     });
@@ -115,54 +104,85 @@ void Setuper::SetupUI()
     mines_lbl = new QLabel(this);
 }
 
-void Setuper::SetupBtns()
+void MinesweeperSetuper::SetupBtns()
 {
     cancel_btn = new QPushButton("Cancel", this);
     cancel_btn->setDisabled(true);
     connect(cancel_btn, &QPushButton::clicked, this, [this]() {
-        temp_minesweeper_settings = *cur_minesweeper_settings;
+        temp = *cur;
         SetCurrentData();
     });
 
     save_btn = new QPushButton("Save", this);
     save_btn->setDisabled(true);
     connect(save_btn, &QPushButton::clicked, this, [this](){
-        bool is_size_changed = !cur_minesweeper_settings->IsSameSize(temp_minesweeper_settings);
-        *cur_minesweeper_settings = temp_minesweeper_settings;
-        (is_size_changed) ? emit FieldSizeChanged() : emit FieldMinesChanged();
+        bool is_size_changed = !cur->IsSameSize(temp);
+        *cur = temp;
+        (is_size_changed) ? emit SizeChanged() : emit MinesNumChanged();
     });
 }
 
-void Setuper::SetCurrentData()
+void MinesweeperSetuper::SetCurrentData()
 {
-    rows_le->setText(QString::number(cur_minesweeper_settings->rows));
-    cols_le->setText(QString::number(cur_minesweeper_settings->cols));
-    mines_le->setText(QString::number(cur_minesweeper_settings->mines));
+    rows_le->setText(QString::number(cur->rows));
+    cols_le->setText(QString::number(cur->cols));
+    mines_le->setText(QString::number(cur->mines));
 
     UpdateAdditionalData();
 }
 
-void Setuper::UpdateAdditionalData()
+void MinesweeperSetuper::UpdateAdditionalData()
 {
-    size_lbl->setText(QString("Cells: %1").arg(temp_minesweeper_settings.CountCells()));
+    size_lbl->setText(QString("Cells: %1").arg(temp.GetCellsCounter()));
     UpdateMinesData();
 }
 
-void Setuper::UpdateMinesData()
+void MinesweeperSetuper::UpdateMinesData()
 {
     mines_lbl->setText(QString("Mines are %1% of all cells")
-                           .arg(temp_minesweeper_settings.CountMinesPercent()));
+                           .arg(temp.GetMinesPercent()));
 
-    mines_le->setStyleSheet(temp_minesweeper_settings.AreMinesValid() ? valid_color : invalid_color);
-    if (!temp_minesweeper_settings.AreMinesValid()) {
+    mines_le->setStyleSheet(temp.AreMinesValid() ? valid_color : invalid_color);
+    if (!temp.AreMinesValid()) {
         save_btn->setDisabled(true);
     }
 }
 
-void Setuper::CheckChanges()
+void MinesweeperSetuper::CheckChanges()
 {
-    bool data_changed = !(*cur_minesweeper_settings == temp_minesweeper_settings);
+    bool data_changed = !(*cur == temp);
 
     save_btn->setEnabled(data_changed);
     cancel_btn->setEnabled(data_changed);
+}
+
+
+//SETUPER------------------------------------------------------------------------------------------
+
+Setuper::Setuper(MinesweeperSettings* minesweeper_settings,
+                 QuizSettings* quiz_settings,
+                 QWidget* parent)
+    : QWidget(parent)
+{
+    setWindowTitle("Settings");
+
+    QVBoxLayout* main_lay = new QVBoxLayout(this);
+
+    QTabWidget* tab_w = new QTabWidget();
+
+    minesweeper_setuper = new MinesweeperSetuper(minesweeper_settings, this);
+    connect(minesweeper_setuper, &MinesweeperSetuper::SizeChanged, this, &Setuper::MinesweeperSizeChanged);
+    connect(minesweeper_setuper, &MinesweeperSetuper::MinesNumChanged, this, &Setuper::MinesweeperMinesNumChanged);
+    tab_w->addTab(minesweeper_setuper, "Minesweeper");
+
+    QWidget* quiz_tab = new QWidget();
+    tab_w->addTab(quiz_tab, "Quiz");
+
+    main_lay->addWidget(tab_w);
+
+    setFixedSize(minimumSize());
+}
+
+Setuper::~Setuper()
+{
 }
